@@ -34,6 +34,9 @@ cd backend
 npm install
 # Edit .env with your MongoDB URI
 
+# Start MongoDB daemon
+sudo systemctl start mongod
+
 # Start backend server
 npm run dev
 
@@ -50,3 +53,20 @@ python3 -m http.server 8000
 # To export annotation to JSON, visit
 localhost:3000/api/expxort
 ```
+
+---
+
+## TODO
+
+- play-pause control
+- S3 backend
+- Driving Clips upload pipeline / API
+
+---
+
+## Note on Driving Clips formatting
+
+- For now, for each video, prepend `videos/` so the backend can find the clips. You can run `scripts/pair_rename.py` to automate this.
+- The clip pair JSON file should be named as `backend/data/clip_pairs.json`.
+- Future pipeline should include ffmpeg transcode functionality. But for now, to ensure the video playback functions in most browser, after every upload, run the `scripts/vid_conv.sh` (remember to modify the content and the path inside).
+- You can remove old clips in the `frontend/videos` except for gold pairs.
