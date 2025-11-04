@@ -33,6 +33,15 @@ cd human-preference-annotator
 cd backend
 npm install
 # Edit .env with your MongoDB URI
+```
+
+# Run it locally
+
+## Go back to root (`human-preference-annotator/`)
+
+```bash
+# back to human-preference-annotator/
+cd ../
 
 # Start MongoDB daemon
 sudo systemctl start mongod
@@ -40,21 +49,29 @@ sudo systemctl start mongod
 # Start backend server
 npm run dev
 
-# To generate token for an annotator, change dir to backend and run
-node generate_token.js
-
-# To delete all records, change dir to backend and run
-node flush_db.js
-
 # Open frontend (use live-server or VS Code extension, or Python http.server)
-cd ../frontend
+cd frontend
 python3 -m http.server 8000
 
 # To open the annotation platform, visit
 localhost:8000/admin
+```
 
-# To export annotation to JSON, visit
-localhost:3000/api/expxort
+---
+
+# Internal Functions
+
+## To generate token for an annotator, change dir to backend and run
+
+`node generate_token.js`
+
+## To delete all records, change dir to backend and run
+
+`node flush_db.js`
+
+## To export annotation to JSON, visit
+
+`localhost:3000/api/expxort`
 ```
 
 ---
