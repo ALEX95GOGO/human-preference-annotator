@@ -50,6 +50,9 @@ node flush_db.js
 cd ../frontend
 python3 -m http.server 8000
 
+# To open the annotation platform, visit
+localhost:8000/admin
+
 # To export annotation to JSON, visit
 localhost:3000/api/expxort
 ```
