@@ -21,6 +21,7 @@ const allowed = [
   'https://jkli-2.github.io',
   'https://jkli-2.github.io/human-preference-annotator/',
   'http://localhost',
+  'http://127.0.0.1'
 ];
 // app.use(cors());
 app.use(cors({ origin: (o, cb) => cb(null, !o || allowed.some(a => o.startsWith(a))), credentials: true }));
