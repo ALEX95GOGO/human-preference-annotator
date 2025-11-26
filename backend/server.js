@@ -20,6 +20,8 @@ const app = express();
 const allowed = [
   'https://jkli-2.github.io',
   'https://jkli-2.github.io/human-preference-annotator/',
+  'https://alex95gogo.github.io',
+  'https://alex95gogo.github.io/human-preference-annotator/',
   'http://localhost',
 ];
 // app.use(cors());
