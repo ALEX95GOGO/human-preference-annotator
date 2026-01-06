@@ -187,7 +187,7 @@ function renderStepUI() {
         buttons
             .querySelector("#surpriseNext")
             .addEventListener("click", () => markStepAdvance(STEPS.ATTENTION));
-    //}
+    }
     // else if (step === STEPS.SURPRISE) {
     //     buttons.innerHTML = `
     //         <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
@@ -267,7 +267,7 @@ function renderStepUI() {
         document.getElementById("surpriseNext").addEventListener("click", () => {
             if (canNext()) markStepAdvance(STEPS.ATTENTION);
         });
-        // } else if (step === STEPS.ATTENTION) {
+         //} else if (step === STEPS.ATTENTION) {
         //     buttons.innerHTML = `
         //   <button id="markPointBtn">Mark attention on ${chosen === "left" ? "Up" : "Down"} (X)</button>
         //   ${
