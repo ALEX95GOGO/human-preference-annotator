@@ -247,26 +247,26 @@ function renderStepUI() {
         //     markStepAdvance(STEPS.ATTENTION);
         // });
 
-        const adv = document.getElementById("advWrap");
-        document.getElementById("advToggle").addEventListener("click", () => {
-            const open = adv.style.display !== "none";
-            adv.style.display = open ? "none" : "block";
-        });
+        // const adv = document.getElementById("advWrap");
+        // document.getElementById("advToggle").addEventListener("click", () => {
+        //     const open = adv.style.display !== "none";
+        //     adv.style.display = open ? "none" : "block";
+        // });
 
-        buttons.querySelectorAll(".surBtn").forEach((b) => {
-            b.addEventListener("click", () => {
-                const side = b.dataset.side,
-                    val = Number(b.dataset.val);
-                staged.surprise[side] = val;
-                document.getElementById(
-                    side === "left" ? "leftSurVal" : "rightSurVal"
-                ).textContent = val;
-            });
-        });
+        // buttons.querySelectorAll(".surBtn").forEach((b) => {
+        //     b.addEventListener("click", () => {
+        //         const side = b.dataset.side,
+        //             val = Number(b.dataset.val);
+        //         staged.surprise[side] = val;
+        //         document.getElementById(
+        //             side === "left" ? "leftSurVal" : "rightSurVal"
+        //         ).textContent = val;
+        //     });
+        // });
 
-        document.getElementById("surpriseNext").addEventListener("click", () => {
-            if (canNext()) markStepAdvance(STEPS.ATTENTION);
-        });
+        // document.getElementById("surpriseNext").addEventListener("click", () => {
+        //     if (canNext()) markStepAdvance(STEPS.ATTENTION);
+        // });
          //} else if (step === STEPS.ATTENTION) {
         //     buttons.innerHTML = `
         //   <button id="markPointBtn">Mark attention on ${chosen === "left" ? "Up" : "Down"} (X)</button>
