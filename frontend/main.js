@@ -187,7 +187,7 @@ function renderStepUI() {
         buttons
             .querySelector("#surpriseNext")
             .addEventListener("click", () => markStepAdvance(STEPS.ATTENTION));
-    };
+    //};
     // else if (step === STEPS.SURPRISE) {
     //     buttons.innerHTML = `
     //         <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
