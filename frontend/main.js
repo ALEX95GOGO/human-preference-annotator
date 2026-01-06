@@ -919,6 +919,8 @@ async function submitStagedAnnotation() {
                     handleChoice("cant_tell");
                 }
             } else if (step === STEPS.SURPRISE) {
+                return; // disable keyboard shortcuts on Surprise step
+
                 const leftMap = { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5 };
                 const rightMap = { q: 1, w: 2, e: 3, r: 4, t: 5, Q: 1, W: 2, E: 3, R: 4, T: 5 };
 
