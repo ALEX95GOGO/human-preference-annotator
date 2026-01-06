@@ -231,21 +231,21 @@ function renderStepUI() {
         //     if (n) n.disabled = !canNext();
         // };
 
-        document.getElementById("surL").addEventListener("click", () => {
-            staged.surpriseChoice = "left";
-            // updateNext();
-            markStepAdvance(STEPS.ATTENTION);
-        });
-        document.getElementById("surR").addEventListener("click", () => {
-            staged.surpriseChoice = "right";
-            // updateNext();
-            markStepAdvance(STEPS.ATTENTION);
-        });
-        document.getElementById("surNone").addEventListener("click", () => {
-            staged.surpriseChoice = "none";
-            // updateNext();
-            markStepAdvance(STEPS.ATTENTION);
-        });
+        // document.getElementById("surL").addEventListener("click", () => {
+        //     staged.surpriseChoice = "left";
+        //     // updateNext();
+        //     markStepAdvance(STEPS.ATTENTION);
+        // });
+        // document.getElementById("surR").addEventListener("click", () => {
+        //     staged.surpriseChoice = "right";
+        //     // updateNext();
+        //     markStepAdvance(STEPS.ATTENTION);
+        // });
+        // document.getElementById("surNone").addEventListener("click", () => {
+        //     staged.surpriseChoice = "none";
+        //     // updateNext();
+        //     markStepAdvance(STEPS.ATTENTION);
+        // });
 
         const adv = document.getElementById("advWrap");
         document.getElementById("advToggle").addEventListener("click", () => {
