@@ -10,7 +10,7 @@ Designed for crowdsourced studies or in-lab annotation, with static frontend + s
 
 [Test Link](https://jkli-2.github.io/human-preference-annotator/?token=ffb981fe)
 
-[Admin Dashboard](https://jkli-2.github.io/human-preference-annotator/admin/)
+[Admin Dashboard](https://alex95gogo.github.io/human-preference-annotator/admin/)
 
 ---
 
