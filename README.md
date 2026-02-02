@@ -8,7 +8,7 @@ A lightweight web-based tool for collecting human preference labels on driving b
 
 Designed for crowdsourced studies or in-lab annotation, with static frontend + serverless-ready backend architecture.
 
-[Test Link](https://jkli-2.github.io/human-preference-annotator/?token=ffb981fe)
+[Test Link](https://alex95gogo.github.io/human-preference-annotator/?token=ffb981fe)
 
 [Admin Dashboard](https://alex95gogo.github.io/human-preference-annotator/admin/)
 
