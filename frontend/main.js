@@ -154,23 +154,105 @@ function renderStepUI() {
       <button onclick="handleChoice('cant_tell')">Can't Tell</button>`;
     }
 
+    // else if (step === STEPS.SURPRISE) {
+    //     buttons.innerHTML = `
+    //   <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    //     <div><div style="font-weight:600;margin-bottom:4px">Up clip</div>
+    //       ${[1, 2, 3, 4, 5]
+    //           .map((v) => `<button data-side="left" data-val="${v}" class="surBtn">${v}</button>`)
+    //           .join(" ")}
+    //       <span id="leftSurVal" style="margin-left:8px; margin-right: 18px;">${staged.surprise.left ?? "-"}</span>
+    //     </div>
+    //     <div><div style="font-weight:600;margin-bottom:4px">Down clip</div>
+    //       ${[1, 2, 3, 4, 5]
+    //           .map((v) => `<button data-side="right" data-val="${v}" class="surBtn">${v}</button>`)
+    //           .join(" ")}
+    //       <span id="rightSurVal" style="margin-left:8px; margin-right: 18px;">${staged.surprise.right ?? "-"}</span>
+    //     </div>
+    //     <div><button id="surpriseNext" disabled>Next</button></div>
+    //   </div>`;
+    //     buttons.querySelectorAll(".surBtn").forEach((b) => {
+    //         b.addEventListener("click", () => {
+    //             const side = b.dataset.side,
+    //                 val = Number(b.dataset.val);
+    //             staged.surprise[side] = val;
+    //             document.getElementById(
+    //                 side === "left" ? "leftSurVal" : "rightSurVal"
+    //             ).textContent = val;
+    //             buttons.querySelector("#surpriseNext").disabled = !(
+    //                 staged.surprise.left && staged.surprise.right
+    //             );
+    //         });
+    //     });
+    //     buttons
+    //         .querySelector("#surpriseNext")
+    //         .addEventListener("click", () => markStepAdvance(STEPS.ATTENTION));
+    // }
     else if (step === STEPS.SURPRISE) {
         buttons.innerHTML = `
-      <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
-        <div><div style="font-weight:600;margin-bottom:4px">Up clip</div>
-          ${[1, 2, 3, 4, 5]
-              .map((v) => `<button data-side="left" data-val="${v}" class="surBtn">${v}</button>`)
-              .join(" ")}
-          <span id="leftSurVal" style="margin-left:8px; margin-right: 18px;">${staged.surprise.left ?? "-"}</span>
-        </div>
-        <div><div style="font-weight:600;margin-bottom:4px">Down clip</div>
-          ${[1, 2, 3, 4, 5]
-              .map((v) => `<button data-side="right" data-val="${v}" class="surBtn">${v}</button>`)
-              .join(" ")}
-          <span id="rightSurVal" style="margin-left:8px; margin-right: 18px;">${staged.surprise.right ?? "-"}</span>
-        </div>
-        <div><button id="surpriseNext" disabled>Next</button></div>
-      </div>`;
+            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+            <button id="surL">Up surprised me more</button>
+            <button id="surR">Down surprised me more</button>
+            <button id="surNone">No surprising event</button>
+            <button id="advToggle" style="margin-left:12px;display:none">Advanced 1-5</button>
+            <div id="advWrap" style="display:none; width:100%; padding-top:6px;">
+                <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+                <div><div style="font-weight:600;margin-bottom:4px">Up clip</div>
+                    ${[1, 2, 3, 4, 5]
+                        .map(
+                            (v) =>
+                                `<button data-side="left" data-val="${v}" class="surBtn">${v}</button>`
+                        )
+                        .join(" ")}
+                    <span id="leftSurVal" style="margin-left:8px">${
+                        staged.surprise.left ?? "—"
+                    }</span>
+                </div>
+                <div><div style="font-weight:600;margin-bottom:4px">Down clip</div>
+                    ${[1, 2, 3, 4, 5]
+                        .map(
+                            (v) =>
+                                `<button data-side="right" data-val="${v}" class="surBtn">${v}</button>`
+                        )
+                        .join(" ")}
+                    <span id="rightSurVal" style="margin-left:8px">${
+                        staged.surprise.right ?? "—"
+                    }</span>
+                </div>
+                </div>
+            </div>
+            <div style="flex:1"></div>
+            <button id="surpriseNext" style="display:none" disabled>Next</button>
+            </div>`;
+
+        const canNext = () => !!staged.surpriseChoice; // binary choice required
+        const updateNext = () => {
+            const n = document.getElementById("surpriseNext");
+            if (n) n.disabled = !canNext();
+        };
+
+        document.getElementById("surL").addEventListener("click", () => {
+            staged.surpriseChoice = "left";
+            // updateNext();
+            markStepAdvance(STEPS.ATTENTION);
+        });
+        document.getElementById("surR").addEventListener("click", () => {
+            staged.surpriseChoice = "right";
+            // updateNext();
+            markStepAdvance(STEPS.ATTENTION);
+        });
+        document.getElementById("surNone").addEventListener("click", () => {
+            staged.surpriseChoice = "none";
+            // updateNext();
+            markStepAdvance(STEPS.ATTENTION);
+        });
+
+        const adv = document.getElementById("advWrap");
+        document.getElementById("advToggle").addEventListener("click", () => {
+            const open = adv.style.display !== "none";
+            adv.style.display = open ? "none" : "block";
+        });
+
         buttons.querySelectorAll(".surBtn").forEach((b) => {
             b.addEventListener("click", () => {
                 const side = b.dataset.side,
@@ -179,95 +261,13 @@ function renderStepUI() {
                 document.getElementById(
                     side === "left" ? "leftSurVal" : "rightSurVal"
                 ).textContent = val;
-                buttons.querySelector("#surpriseNext").disabled = !(
-                    staged.surprise.left && staged.surprise.right
-                );
             });
         });
-        buttons
-            .querySelector("#surpriseNext")
-            .addEventListener("click", () => markStepAdvance(STEPS.ATTENTION));
-    }
-    // else if (step === STEPS.SURPRISE) {
-    //     buttons.innerHTML = `
-    //         <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-    //         <button id="surL">Up surprised me more</button>
-    //         <button id="surR">Down surprised me more</button>
-    //         <button id="surNone">No surprising event</button>
-    //         <button id="advToggle" style="margin-left:12px;display:none">Advanced 1-5</button>
-    //         <div id="advWrap" style="display:none; width:100%; padding-top:6px;">
-    //             <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
-    //             <div><div style="font-weight:600;margin-bottom:4px">Up clip</div>
-    //                 ${[1, 2, 3, 4, 5]
-    //                     .map(
-    //                         (v) =>
-    //                             `<button data-side="left" data-val="${v}" class="surBtn">${v}</button>`
-    //                     )
-    //                     .join(" ")}
-    //                 <span id="leftSurVal" style="margin-left:8px">${
-    //                     staged.surprise.left ?? "—"
-    //                 }</span>
-    //             </div>
-    //             <div><div style="font-weight:600;margin-bottom:4px">Down clip</div>
-    //                 ${[1, 2, 3, 4, 5]
-    //                     .map(
-    //                         (v) =>
-    //                             `<button data-side="right" data-val="${v}" class="surBtn">${v}</button>`
-    //                     )
-    //                     .join(" ")}
-    //                 <span id="rightSurVal" style="margin-left:8px">${
-    //                     staged.surprise.right ?? "—"
-    //                 }</span>
-    //             </div>
-    //             </div>
-    //         </div>
-    //         <div style="flex:1"></div>
-    //         <button id="surpriseNext" style="display:none" disabled>Next</button>
-    //         </div>`;
 
-        // const canNext = () => !!staged.surpriseChoice; // binary choice required
-        // const updateNext = () => {
-        //     const n = document.getElementById("surpriseNext");
-        //     if (n) n.disabled = !canNext();
-        // };
-
-        // document.getElementById("surL").addEventListener("click", () => {
-        //     staged.surpriseChoice = "left";
-        //     // updateNext();
-        //     markStepAdvance(STEPS.ATTENTION);
-        // });
-        // document.getElementById("surR").addEventListener("click", () => {
-        //     staged.surpriseChoice = "right";
-        //     // updateNext();
-        //     markStepAdvance(STEPS.ATTENTION);
-        // });
-        // document.getElementById("surNone").addEventListener("click", () => {
-        //     staged.surpriseChoice = "none";
-        //     // updateNext();
-        //     markStepAdvance(STEPS.ATTENTION);
-        // });
-
-        // const adv = document.getElementById("advWrap");
-        // document.getElementById("advToggle").addEventListener("click", () => {
-        //     const open = adv.style.display !== "none";
-        //     adv.style.display = open ? "none" : "block";
-        // });
-
-        // buttons.querySelectorAll(".surBtn").forEach((b) => {
-        //     b.addEventListener("click", () => {
-        //         const side = b.dataset.side,
-        //             val = Number(b.dataset.val);
-        //         staged.surprise[side] = val;
-        //         document.getElementById(
-        //             side === "left" ? "leftSurVal" : "rightSurVal"
-        //         ).textContent = val;
-        //     });
-        // });
-
-        // document.getElementById("surpriseNext").addEventListener("click", () => {
-        //     if (canNext()) markStepAdvance(STEPS.ATTENTION);
-        // });
-         //} else if (step === STEPS.ATTENTION) {
+        document.getElementById("surpriseNext").addEventListener("click", () => {
+            if (canNext()) markStepAdvance(STEPS.ATTENTION);
+        });
+        // } else if (step === STEPS.ATTENTION) {
         //     buttons.innerHTML = `
         //   <button id="markPointBtn">Mark attention on ${chosen === "left" ? "Up" : "Down"} (X)</button>
         //   ${
@@ -919,8 +919,6 @@ async function submitStagedAnnotation() {
                     handleChoice("cant_tell");
                 }
             } else if (step === STEPS.SURPRISE) {
-                return; // disable keyboard shortcuts on Surprise step
-
                 const leftMap = { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5 };
                 const rightMap = { q: 1, w: 2, e: 3, r: 4, t: 5, Q: 1, W: 2, E: 3, R: 4, T: 5 };
 
