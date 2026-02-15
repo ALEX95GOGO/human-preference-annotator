@@ -2,7 +2,7 @@ name: Deploy static frontend to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ vlm ]
     paths:
       - "frontend/**"
       - ".github/workflows/pages.yml"
