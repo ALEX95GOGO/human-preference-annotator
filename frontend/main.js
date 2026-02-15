@@ -137,6 +137,7 @@ function renderStepUI() {
             : step === STEPS.SURPRISE
             ? "Step 2/3: Surprise"
             : "Step 3/3: Attention";
+
     notes.innerHTML =
         // `<p id="instructions"><strong>${stepName}</strong></p>` +
         step === STEPS.PREF
@@ -152,162 +153,62 @@ function renderStepUI() {
       <button onclick="handleChoice('left')">Prefer Up</button>
       <button onclick="handleChoice('right')">Prefer Down</button>
       <button onclick="handleChoice('cant_tell')">Can't Tell</button>`;
-    }
-
-    // else if (step === STEPS.SURPRISE) {
-    //     buttons.innerHTML = `
-    //   <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
-    //     <div><div style="font-weight:600;margin-bottom:4px">Up clip</div>
-    //       ${[1, 2, 3, 4, 5]
-    //           .map((v) => `<button data-side="left" data-val="${v}" class="surBtn">${v}</button>`)
-    //           .join(" ")}
-    //       <span id="leftSurVal" style="margin-left:8px; margin-right: 18px;">${staged.surprise.left ?? "-"}</span>
-    //     </div>
-    //     <div><div style="font-weight:600;margin-bottom:4px">Down clip</div>
-    //       ${[1, 2, 3, 4, 5]
-    //           .map((v) => `<button data-side="right" data-val="${v}" class="surBtn">${v}</button>`)
-    //           .join(" ")}
-    //       <span id="rightSurVal" style="margin-left:8px; margin-right: 18px;">${staged.surprise.right ?? "-"}</span>
-    //     </div>
-    //     <div><button id="surpriseNext" disabled>Next</button></div>
-    //   </div>`;
-    //     buttons.querySelectorAll(".surBtn").forEach((b) => {
-    //         b.addEventListener("click", () => {
-    //             const side = b.dataset.side,
-    //                 val = Number(b.dataset.val);
-    //             staged.surprise[side] = val;
-    //             document.getElementById(
-    //                 side === "left" ? "leftSurVal" : "rightSurVal"
-    //             ).textContent = val;
-    //             buttons.querySelector("#surpriseNext").disabled = !(
-    //                 staged.surprise.left && staged.surprise.right
-    //             );
-    //         });
-    //     });
-    //     buttons
-    //         .querySelector("#surpriseNext")
-    //         .addEventListener("click", () => markStepAdvance(STEPS.ATTENTION));
-    // }
-    else if (step === STEPS.SURPRISE) {
+    } else if (step === STEPS.SURPRISE) {
+        // ✅ Back to 1–5 ratings for BOTH clips
         buttons.innerHTML = `
-            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-            <button id="surL">Up surprised me more</button>
-            <button id="surR">Down surprised me more</button>
-            <button id="surNone">No surprising event</button>
-            <button id="advToggle" style="margin-left:12px;display:none">Advanced 1-5</button>
-            <div id="advWrap" style="display:none; width:100%; padding-top:6px;">
-                <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
-                <div><div style="font-weight:600;margin-bottom:4px">Up clip</div>
-                    ${[1, 2, 3, 4, 5]
-                        .map(
-                            (v) =>
-                                `<button data-side="left" data-val="${v}" class="surBtn">${v}</button>`
-                        )
-                        .join(" ")}
-                    <span id="leftSurVal" style="margin-left:8px">${
-                        staged.surprise.left ?? "—"
-                    }</span>
-                </div>
-                <div><div style="font-weight:600;margin-bottom:4px">Down clip</div>
-                    ${[1, 2, 3, 4, 5]
-                        .map(
-                            (v) =>
-                                `<button data-side="right" data-val="${v}" class="surBtn">${v}</button>`
-                        )
-                        .join(" ")}
-                    <span id="rightSurVal" style="margin-left:8px">${
-                        staged.surprise.right ?? "—"
-                    }</span>
-                </div>
-                </div>
-            </div>
-            <div style="flex:1"></div>
-            <button id="surpriseNext" style="display:none" disabled>Next</button>
-            </div>`;
+      <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+        <div>
+          <div style="font-weight:600;margin-bottom:4px">Up clip</div>
+          ${[1, 2, 3, 4, 5]
+              .map((v) => `<button data-side="left" data-val="${v}" class="surBtn">${v}</button>`)
+              .join(" ")}
+          <span id="leftSurVal" style="margin-left:8px; margin-right: 18px;">${
+              staged.surprise.left ?? "—"
+          }</span>
+        </div>
 
-        const canNext = () => !!staged.surpriseChoice; // binary choice required
-        const updateNext = () => {
-            const n = document.getElementById("surpriseNext");
-            if (n) n.disabled = !canNext();
+        <div>
+          <div style="font-weight:600;margin-bottom:4px">Down clip</div>
+          ${[1, 2, 3, 4, 5]
+              .map((v) => `<button data-side="right" data-val="${v}" class="surBtn">${v}</button>`)
+              .join(" ")}
+          <span id="rightSurVal" style="margin-left:8px; margin-right: 18px;">${
+              staged.surprise.right ?? "—"
+          }</span>
+        </div>
+
+        <div><button id="surpriseNext" disabled>Next</button></div>
+      </div>`;
+
+        const nextBtn = buttons.querySelector("#surpriseNext");
+        const refreshNext = () => {
+            nextBtn.disabled = !(staged.surprise.left && staged.surprise.right);
         };
-
-        document.getElementById("surL").addEventListener("click", () => {
-            staged.surpriseChoice = "left";
-            // updateNext();
-            markStepAdvance(STEPS.ATTENTION);
-        });
-        document.getElementById("surR").addEventListener("click", () => {
-            staged.surpriseChoice = "right";
-            // updateNext();
-            markStepAdvance(STEPS.ATTENTION);
-        });
-        document.getElementById("surNone").addEventListener("click", () => {
-            staged.surpriseChoice = "none";
-            // updateNext();
-            markStepAdvance(STEPS.ATTENTION);
-        });
-
-        const adv = document.getElementById("advWrap");
-        document.getElementById("advToggle").addEventListener("click", () => {
-            const open = adv.style.display !== "none";
-            adv.style.display = open ? "none" : "block";
-        });
 
         buttons.querySelectorAll(".surBtn").forEach((b) => {
             b.addEventListener("click", () => {
-                const side = b.dataset.side,
-                    val = Number(b.dataset.val);
+                const side = b.dataset.side;
+                const val = Number(b.dataset.val);
                 staged.surprise[side] = val;
-                document.getElementById(
-                    side === "left" ? "leftSurVal" : "rightSurVal"
-                ).textContent = val;
+
+                document.getElementById(side === "left" ? "leftSurVal" : "rightSurVal").textContent =
+                    val;
+                refreshNext();
             });
         });
 
-        document.getElementById("surpriseNext").addEventListener("click", () => {
-            if (canNext()) markStepAdvance(STEPS.ATTENTION);
+        nextBtn.addEventListener("click", () => {
+            if (!(staged.surprise.left && staged.surprise.right)) return;
+
+            // Optional: preserve old field by deriving a choice from scores
+            if (staged.surprise.left > staged.surprise.right) staged.surpriseChoice = "left";
+            else if (staged.surprise.right > staged.surprise.left) staged.surpriseChoice = "right";
+            else staged.surpriseChoice = "none";
+
+            markStepAdvance(STEPS.ATTENTION);
         });
-        // } else if (step === STEPS.ATTENTION) {
-        //     buttons.innerHTML = `
-        //   <button id="markPointBtn">Mark attention on ${chosen === "left" ? "Up" : "Down"} (X)</button>
-        //   ${
-        //       requireRegion && (chosen === "left" || chosen === "right")
-        //           ? ""
-        //           : '<button id="submitNoPoint">Submit without point</button>'
-        //   }
-        // `;
-        //     const side = chosen;
-        //     const go = () => {
-        //         showPointOverlay(side, (pt) => {
-        //             if (pt) {
-        //                 staged.attention = {
-        //                     type: "point",
-        //                     side,
-        //                     x: pt.x,
-        //                     y: pt.y,
-        //                     coordSpace: "normalised",
-        //                     decisionAtMs: staged.decisionAtMs,
-        //                 };
-        //             } else {
-        //                 staged.attention = {
-        //                     type: "point",
-        //                     side,
-        //                     skipped: true,
-        //                     decisionAtMs: staged.decisionAtMs,
-        //                 };
-        //             }
-        //             submitStagedAnnotation();
-        //         });
-        //     };
-        //     document.getElementById("markPointBtn").addEventListener("click", go);
-        //     const skipBtn = document.getElementById("submitNoPoint");
-        //     if (skipBtn)
-        //         skipBtn.addEventListener("click", () => {
-        //             staged.attention = null;
-        //             submitStagedAnnotation();
-        //         });
-        //     if (requireRegion && (side === "left" || side === "right")) setTimeout(go, 50); // auto-open if required
-        // }
+
+        refreshNext();
     } else if (step === STEPS.ATTENTION) {
         const side = staged?.preference; // "left" | "right"
         const label = side === "left" ? "Up" : "Down";
@@ -824,32 +725,6 @@ async function loadNextPair() {
     renderPair(data);
 }
 
-// For compatibility
-// async function submitResponse(response, attention) {
-//     cancelPauseSampling();
-//     const now = new Date();
-//     const responseTimeMs = presentedTime ? now - presentedTime : undefined;
-//     await fetch(`${API_BASE}/annotate`, {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify({
-//             token,
-//             pairId: currentPair.pair_id,
-//             response,
-//             surpriseChoice: staged.surpriseChoice,
-//             left: { url: currentPair.left_clip },
-//             right: { url: currentPair.right_clip },
-//             presentedTime,
-//             responseTimeMs,
-//             isGold: currentPair._meta?.isGold || false,
-//             isRepeat: currentPair._meta?.isRepeat || false,
-//             repeatOf: currentPair._meta?.repeatOf,
-//             attention,
-//         }),
-//     });
-//     loadNextPair();
-// }
-
 window.onload = () => {
     loadNextPair();
     attachProgress("leftVideo", "leftProgress");
@@ -880,7 +755,7 @@ async function submitStagedAnnotation() {
             token,
             pairId: currentPair.pair_id,
             response, // "left" | "right" | "cant_tell"
-            surpriseChoice: staged.surpriseChoice,
+            surpriseChoice: staged.surpriseChoice, // kept for backward compat; derived from ratings
             left: { url: currentPair.left_clip, surprise: surprise?.left ?? null },
             right: { url: currentPair.right_clip, surprise: surprise?.right ?? null },
             presentedTime,
@@ -919,25 +794,11 @@ async function submitStagedAnnotation() {
                     handleChoice("cant_tell");
                 }
             } else if (step === STEPS.SURPRISE) {
+                // ✅ 1–5 for Up (left), Q–T for Down (right)
                 const leftMap = { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5 };
                 const rightMap = { q: 1, w: 2, e: 3, r: 4, t: 5, Q: 1, W: 2, E: 3, R: 4, T: 5 };
 
-                if (e.key === "ArrowLeft") {
-                    e.preventDefault();
-                    staged.surpriseChoice = "left";
-                    markStepAdvance(STEPS.ATTENTION);
-                    return;
-                } else if (e.key === "ArrowRight") {
-                    e.preventDefault();
-                    staged.surpriseChoice = "right";
-                    markStepAdvance(STEPS.ATTENTION);
-                    return;
-                } else if (e.key === "n" || e.key === "N") {
-                    e.preventDefault();
-                    staged.surpriseChoice = "none";
-                    markStepAdvance(STEPS.ATTENTION);
-                    return;
-                } else if (leftMap[e.key] != null) {
+                if (leftMap[e.key] != null) {
                     staged.surprise.left = leftMap[e.key];
                     const s = document.getElementById("leftSurVal");
                     if (s) s.textContent = staged.surprise.left;
@@ -945,15 +806,21 @@ async function submitStagedAnnotation() {
                     staged.surprise.right = rightMap[e.key];
                     const s = document.getElementById("rightSurVal");
                     if (s) s.textContent = staged.surprise.right;
-                } else if (e.key === "Enter") {
-                    // fall through to next if we have a choice
                 }
 
                 const nextBtn = document.getElementById("surpriseNext");
-                const canNext = !!staged.surpriseChoice;
+                const canNext = !!staged.surprise.left && !!staged.surprise.right;
                 if (nextBtn) nextBtn.disabled = !canNext;
-                if (canNext && e.key === "Enter") {
+
+                if (e.key === "Enter" && canNext) {
                     e.preventDefault();
+
+                    // Optional: preserve old field by deriving a choice from scores
+                    if (staged.surprise.left > staged.surprise.right) staged.surpriseChoice = "left";
+                    else if (staged.surprise.right > staged.surprise.left)
+                        staged.surpriseChoice = "right";
+                    else staged.surpriseChoice = "none";
+
                     markStepAdvance(STEPS.ATTENTION);
                 }
             } else if (step === STEPS.ATTENTION) {
