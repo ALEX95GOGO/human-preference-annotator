@@ -142,6 +142,7 @@ function renderStepUI() {
         // `<p id="instructions"><strong>${stepName}</strong></p>` +
         step === STEPS.PREF
             ? `<p id="instructions">Choose the clip you prefer (ArrowLeft = Left, ArrowRight = Right, ArrowDown = Can't tell).</p>`
+        
             : step === STEPS.SURPRISE
             ? `<p id="instructions">Rate how <em>surprising</em> each clip felt (1 = not at all, 5 = very). Hotkeys: 1-5 for Up, Q-T for Down.</p>`
             : `<p id="instructions">Mark the spot that drove your choice on the <b>${
@@ -149,10 +150,45 @@ function renderStepUI() {
               }</b> clip. Press X to place (or click the video). Esc cancels.</p>`;
 
     if (step === STEPS.PREF) {
+
         buttons.innerHTML = `
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
       <button onclick="handleChoice('left')">Prefer Left</button>
       <button onclick="handleChoice('right')">Prefer Right</button>
-      <button onclick="handleChoice('cant_tell')">Can't Tell</button>`;
+      <button onclick="handleChoice('cant_tell')">Can't Tell</button>
+    </div>
+
+    <div style="display:flex; gap:16px; margin-top:12px; max-width:720px;">
+      <div style="flex:1;">
+        <label style="font:600 12px system-ui; display:block; margin-bottom:4px;">
+          Left clip note
+        </label>
+        <textarea
+          id="leftText"
+          placeholder="What stood out in the left clip?"
+          rows="2"
+          style="width:100%; padding:8px; border-radius:8px; border:1px solid #d0d7de; font:13px system-ui;"
+        ></textarea>
+      </div>
+
+      <div style="flex:1;">
+        <label style="font:600 12px system-ui; display:block; margin-bottom:4px;">
+          Right clip note
+        </label>
+        <textarea
+          id="rightText"
+          placeholder="What stood out in the right clip?"
+          rows="2"
+          style="width:100%; padding:8px; border-radius:8px; border:1px solid #d0d7de; font:13px system-ui;"
+        ></textarea>
+      </div>
+    </div>
+  `;
+        
+       // buttons.innerHTML = `
+      // <button onclick="handleChoice('left')">Prefer Left</button>
+      // <button onclick="handleChoice('right')">Prefer Right</button>
+      // <button onclick="handleChoice('cant_tell')">Can't Tell</button>`;
     } else if (step === STEPS.SURPRISE) {
         // ✅ Back to 1–5 ratings for BOTH clips
         buttons.innerHTML = `
