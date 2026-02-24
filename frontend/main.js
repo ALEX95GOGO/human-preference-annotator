@@ -141,7 +141,7 @@ function renderStepUI() {
     notes.innerHTML =
         // `<p id="instructions"><strong>${stepName}</strong></p>` +
         step === STEPS.PREF
-            ? `<p id="instructions">Choose the clip you prefer (ArrowLeft = Up, ArrowRight = Down, ArrowDown = Can't tell).</p>`
+            ? `<p id="instructions">Choose the clip you prefer (ArrowLeft = Left, ArrowRight = Right, ArrowDown = Can't tell).</p>`
             : step === STEPS.SURPRISE
             ? `<p id="instructions">Rate how <em>surprising</em> each clip felt (1 = not at all, 5 = very). Hotkeys: 1-5 for Up, Q-T for Down.</p>`
             : `<p id="instructions">Mark the spot that drove your choice on the <b>${
@@ -150,8 +150,8 @@ function renderStepUI() {
 
     if (step === STEPS.PREF) {
         buttons.innerHTML = `
-      <button onclick="handleChoice('left')">Prefer Up</button>
-      <button onclick="handleChoice('right')">Prefer Down</button>
+      <button onclick="handleChoice('left')">Prefer Left</button>
+      <button onclick="handleChoice('right')">Prefer Right</button>
       <button onclick="handleChoice('cant_tell')">Can't Tell</button>`;
     } else if (step === STEPS.SURPRISE) {
         // ✅ Back to 1–5 ratings for BOTH clips
@@ -211,7 +211,7 @@ function renderStepUI() {
         refreshNext();
     } else if (step === STEPS.ATTENTION) {
         const side = staged?.preference; // "left" | "right"
-        const label = side === "left" ? "Up" : "Down";
+        const label = side === "left" ? "Left" : "Right";
         notes.innerHTML = `<p id="instructions">Replay in pause-sampling: we'll pause every <b>${PAUSE_SAMPLE_MS}ms</b>. Add <em>multiple</em> points at each stop, then press Space/Enter to continue.</p>`;
         buttons.innerHTML = `
       <button id="startPS">Start pause-sampling on ${label}</button>
