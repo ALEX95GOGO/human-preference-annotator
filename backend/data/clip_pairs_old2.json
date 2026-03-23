@@ -1,0 +1,680 @@
+[
+  {
+    "pair_id": "000001",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_11_26_23_ckpt_11833344.pth_09_15_14_50_35_auto__srca1__tpre2_tpost2_60_293_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_11_26_23_ckpt_11833344.pth_09_15_14_50_35_auto__srca1__tpre2_tpost2_60_293_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000002",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_11_26_23_ckpt_11833344.pth_09_15_14_50_35_auto__srca2__tpre2_tpost2_1619_1960_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_11_26_23_ckpt_11833344.pth_09_15_14_50_35_auto__srca2__tpre2_tpost2_1619_1960_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000003",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_11_26_23_ckpt_11833344.pth_09_15_14_50_35_auto__srca2__tpre2_tpost2_1985_2400_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_11_26_23_ckpt_11833344.pth_09_15_14_50_35_auto__srca2__tpre2_tpost2_1985_2400_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000004",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_11_39_50_ckpt_11833344.pth_09_15_15_17_04_auto__srca2__tpre2_tpost2_1087_2400_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_11_39_50_ckpt_11833344.pth_09_15_15_17_04_auto__srca2__tpre2_tpost2_1087_2400_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000005",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_11_39_50_ckpt_11833344.pth_09_15_15_17_04_auto__srca2__tpre2_tpost2_595_700_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_11_39_50_ckpt_11833344.pth_09_15_15_17_04_auto__srca2__tpre2_tpost2_595_700_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000006",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_11_39_50_ckpt_11833344.pth_09_15_15_17_04_auto__srca2__tpre2_tpost2_763_1360_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_11_39_50_ckpt_11833344.pth_09_15_15_17_04_auto__srca2__tpre2_tpost2_763_1360_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000007",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_11_47_40_ckpt_11833344.pth_09_15_15_39_03_auto__srca2__tpre2_tpost2_1375_1740_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_11_47_40_ckpt_11833344.pth_09_15_15_39_03_auto__srca2__tpre2_tpost2_1375_1740_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000008",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_11_47_40_ckpt_11833344.pth_09_15_15_39_03_auto__srca2__tpre2_tpost2_58_80_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_11_47_40_ckpt_11833344.pth_09_15_15_39_03_auto__srca2__tpre2_tpost2_58_80_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000009",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_11_47_40_ckpt_11833344.pth_09_15_15_39_03_auto__srca2__tpre2_tpost2_649_660_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_11_47_40_ckpt_11833344.pth_09_15_15_39_03_auto__srca2__tpre2_tpost2_649_660_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000010",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_10_19_ckpt_11833344.pth_09_15_15_57_03_auto__srca2__tpre2_tpost2_1238_1260_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_10_19_ckpt_11833344.pth_09_15_15_57_03_auto__srca2__tpre2_tpost2_1238_1260_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000011",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_10_19_ckpt_11833344.pth_09_15_15_57_03_auto__srca2__tpre2_tpost2_2542_3300_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_10_19_ckpt_11833344.pth_09_15_15_57_03_auto__srca2__tpre2_tpost2_2542_3300_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000012",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_10_19_ckpt_11833344.pth_09_15_15_57_03_auto__srca2__tpre2_tpost2_693_1080_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_10_19_ckpt_11833344.pth_09_15_15_57_03_auto__srca2__tpre2_tpost2_693_1080_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000013",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_31_11_ckpt_11833344.pth_09_15_16_31_27_auto__srca1__tpre2_tpost2_160_455_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_31_11_ckpt_11833344.pth_09_15_16_31_27_auto__srca1__tpre2_tpost2_160_455_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000014",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_31_11_ckpt_11833344.pth_09_15_16_31_27_auto__srca1__tpre2_tpost2_260_678_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_31_11_ckpt_11833344.pth_09_15_16_31_27_auto__srca1__tpre2_tpost2_260_678_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000015",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_31_11_ckpt_11833344.pth_09_15_16_31_27_auto__srca2__tpre2_tpost2_216_620_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_31_11_ckpt_11833344.pth_09_15_16_31_27_auto__srca2__tpre2_tpost2_216_620_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000016",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_43_08_ckpt_11833344.pth_09_15_16_54_05_auto__srca1__tpre2_tpost2_180_174_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_43_08_ckpt_11833344.pth_09_15_16_54_05_auto__srca1__tpre2_tpost2_180_174_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000017",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_43_08_ckpt_11833344.pth_09_15_16_54_05_auto__srca1__tpre2_tpost2_20_10_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_43_08_ckpt_11833344.pth_09_15_16_54_05_auto__srca1__tpre2_tpost2_20_10_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000018",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_43_08_ckpt_11833344.pth_09_15_16_54_05_auto__srca1__tpre2_tpost2_280_299_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_43_08_ckpt_11833344.pth_09_15_16_54_05_auto__srca1__tpre2_tpost2_280_299_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000019",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_55_42_ckpt_11833344.pth_09_15_17_28_25_auto__srca1__tpre2_tpost2_1100_1102_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_55_42_ckpt_11833344.pth_09_15_17_28_25_auto__srca1__tpre2_tpost2_1100_1102_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000020",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_55_42_ckpt_11833344.pth_09_15_17_28_25_auto__srca1__tpre2_tpost2_2780_3198_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_55_42_ckpt_11833344.pth_09_15_17_28_25_auto__srca1__tpre2_tpost2_2780_3198_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000021",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_55_42_ckpt_11833344.pth_09_15_17_28_25_auto__srca2__tpre2_tpost2_2538_2900_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_12_55_42_ckpt_11833344.pth_09_15_17_28_25_auto__srca2__tpre2_tpost2_2538_2900_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000022",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_18_08_ckpt_11833344.pth_09_15_17_57_58_auto__srca2__tpre2_tpost2_1351_1800_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_18_08_ckpt_11833344.pth_09_15_17_57_58_auto__srca2__tpre2_tpost2_1351_1800_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000023",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_18_08_ckpt_11833344.pth_09_15_17_57_58_auto__srca2__tpre2_tpost2_57_140_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_18_08_ckpt_11833344.pth_09_15_17_57_58_auto__srca2__tpre2_tpost2_57_140_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000024",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_18_08_ckpt_11833344.pth_09_15_17_57_58_auto__srca2__tpre2_tpost2_973_1520_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_18_08_ckpt_11833344.pth_09_15_17_57_58_auto__srca2__tpre2_tpost2_973_1520_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000025",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_27_50_ckpt_11833344.pth_09_15_18_15_07_auto__srca1__tpre2_tpost2_2000_2487_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_27_50_ckpt_11833344.pth_09_15_18_15_07_auto__srca1__tpre2_tpost2_2000_2487_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000026",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_27_50_ckpt_11833344.pth_09_15_18_15_07_auto__srca2__tpre2_tpost2_1413_1800_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_27_50_ckpt_11833344.pth_09_15_18_15_07_auto__srca2__tpre2_tpost2_1413_1800_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000027",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_27_50_ckpt_11833344.pth_09_15_18_15_07_auto__srca2__tpre2_tpost2_487_480_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_27_50_ckpt_11833344.pth_09_15_18_15_07_auto__srca2__tpre2_tpost2_487_480_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000028",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_40_32_ckpt_11833344.pth_09_15_18_37_42_auto__srca1__tpre2_tpost2_140_739_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_40_32_ckpt_11833344.pth_09_15_18_37_42_auto__srca1__tpre2_tpost2_140_739_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000029",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_40_32_ckpt_11833344.pth_09_15_18_37_42_auto__srca2__tpre2_tpost2_1491_2000_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_40_32_ckpt_11833344.pth_09_15_18_37_42_auto__srca2__tpre2_tpost2_1491_2000_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000030",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_40_32_ckpt_11833344.pth_09_15_18_37_42_auto__srca2__tpre2_tpost2_529_1340_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_40_32_ckpt_11833344.pth_09_15_18_37_42_auto__srca2__tpre2_tpost2_529_1340_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000031",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_51_40_ckpt_11833344.pth_09_15_19_00_02_auto__srca1__tpre2_tpost2_2680_3158_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_51_40_ckpt_11833344.pth_09_15_19_00_02_auto__srca1__tpre2_tpost2_2680_3158_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000032",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_51_40_ckpt_11833344.pth_09_15_19_00_02_auto__srca1__tpre2_tpost2_3160_4053_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_51_40_ckpt_11833344.pth_09_15_19_00_02_auto__srca1__tpre2_tpost2_3160_4053_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000033",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_51_40_ckpt_11833344.pth_09_15_19_00_02_auto__srca1__tpre2_tpost2_980_946_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_13_51_40_ckpt_11833344.pth_09_15_19_00_02_auto__srca1__tpre2_tpost2_980_946_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000034",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_14_11_40_ckpt_11833344.pth_09_15_19_36_12_auto__srca1__tpre2_tpost2_1080_1077_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_14_11_40_ckpt_11833344.pth_09_15_19_36_12_auto__srca1__tpre2_tpost2_1080_1077_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000035",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_14_11_40_ckpt_11833344.pth_09_15_19_36_12_auto__srca1__tpre2_tpost2_2280_2280_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_14_11_40_ckpt_11833344.pth_09_15_19_36_12_auto__srca1__tpre2_tpost2_2280_2280_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000036",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_14_11_40_ckpt_11833344.pth_09_15_19_36_12_auto__srca1__tpre2_tpost2_3360_3357_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_14_11_40_ckpt_11833344.pth_09_15_19_36_12_auto__srca1__tpre2_tpost2_3360_3357_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000037",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_14_34_37_ckpt_11833344.pth_09_15_20_08_52_auto__srca1__tpre2_tpost2_400_698_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_14_34_37_ckpt_11833344.pth_09_15_20_08_52_auto__srca1__tpre2_tpost2_400_698_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000038",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_14_34_37_ckpt_11833344.pth_09_15_20_08_52_auto__srca1__tpre2_tpost2_920_1429_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_14_34_37_ckpt_11833344.pth_09_15_20_08_52_auto__srca1__tpre2_tpost2_920_1429_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000039",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_14_34_37_ckpt_11833344.pth_09_15_20_08_52_auto__srca2__tpre2_tpost2_3038_4820_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_14_34_37_ckpt_11833344.pth_09_15_20_08_52_auto__srca2__tpre2_tpost2_3038_4820_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000040",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_14_54_46_ckpt_11833344.pth_09_15_20_52_44_auto__srca1__tpre2_tpost2_680_559_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_14_54_46_ckpt_11833344.pth_09_15_20_52_44_auto__srca1__tpre2_tpost2_680_559_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000041",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_14_54_46_ckpt_11833344.pth_09_15_20_52_44_auto__srca2__tpre2_tpost2_286_2760_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_14_54_46_ckpt_11833344.pth_09_15_20_52_44_auto__srca2__tpre2_tpost2_286_2760_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000042",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_14_54_46_ckpt_11833344.pth_09_15_20_52_44_auto__srca2__tpre2_tpost2_594_420_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_14_54_46_ckpt_11833344.pth_09_15_20_52_44_auto__srca2__tpre2_tpost2_594_420_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000043",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_15_00_29_ckpt_11833344.pth_09_15_21_14_24_auto__srca1__tpre2_tpost2_1720_1713_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_15_00_29_ckpt_11833344.pth_09_15_21_14_24_auto__srca1__tpre2_tpost2_1720_1713_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000044",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_15_00_29_ckpt_11833344.pth_09_15_21_14_24_auto__srca2__tpre2_tpost2_295_340_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_15_00_29_ckpt_11833344.pth_09_15_21_14_24_auto__srca2__tpre2_tpost2_295_340_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000045",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_15_00_29_ckpt_11833344.pth_09_15_21_14_24_auto__srca2__tpre2_tpost2_582_600_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_15_00_29_ckpt_11833344.pth_09_15_21_14_24_auto__srca2__tpre2_tpost2_582_600_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000046",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_15_20_12_ckpt_11833344.pth_09_15_21_42_37_auto__srca1__tpre2_tpost2_1400_1386_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_15_20_12_ckpt_11833344.pth_09_15_21_42_37_auto__srca1__tpre2_tpost2_1400_1386_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000047",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_15_20_12_ckpt_11833344.pth_09_15_21_42_37_auto__srca1__tpre2_tpost2_2360_3942_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_15_20_12_ckpt_11833344.pth_09_15_21_42_37_auto__srca1__tpre2_tpost2_2360_3942_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000048",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_15_20_12_ckpt_11833344.pth_09_15_21_42_37_auto__srca2__tpre2_tpost2_3139_4320_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_15_20_12_ckpt_11833344.pth_09_15_21_42_37_auto__srca2__tpre2_tpost2_3139_4320_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000049",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_15_50_15_ckpt_11833344.pth_09_15_22_31_12_auto__srca2__tpre2_tpost2_1574_3980_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_15_50_15_ckpt_11833344.pth_09_15_22_31_12_auto__srca2__tpre2_tpost2_1574_3980_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000050",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_15_50_15_ckpt_11833344.pth_09_15_22_31_12_auto__srca2__tpre2_tpost2_1697_4340_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_15_50_15_ckpt_11833344.pth_09_15_22_31_12_auto__srca2__tpre2_tpost2_1697_4340_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000051",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_15_50_15_ckpt_11833344.pth_09_15_22_31_12_auto__srca2__tpre2_tpost2_2329_4860_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_15_50_15_ckpt_11833344.pth_09_15_22_31_12_auto__srca2__tpre2_tpost2_2329_4860_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000052",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_16_04_36_ckpt_11833344.pth_09_15_23_09_07_auto__srca1__tpre2_tpost2_3360_5531_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_16_04_36_ckpt_11833344.pth_09_15_23_09_07_auto__srca1__tpre2_tpost2_3360_5531_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000053",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_16_04_36_ckpt_11833344.pth_09_15_23_09_07_auto__srca2__tpre2_tpost2_1203_1800_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_16_04_36_ckpt_11833344.pth_09_15_23_09_07_auto__srca2__tpre2_tpost2_1203_1800_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000054",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_16_04_36_ckpt_11833344.pth_09_15_23_09_07_auto__srca2__tpre2_tpost2_993_1680_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_16_04_36_ckpt_11833344.pth_09_15_23_09_07_auto__srca2__tpre2_tpost2_993_1680_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000055",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_16_25_28_ckpt_11833344.pth_09_15_23_50_00_auto__srca1__tpre2_tpost2_2460_2420_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_16_25_28_ckpt_11833344.pth_09_15_23_50_00_auto__srca1__tpre2_tpost2_2460_2420_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000056",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_16_25_28_ckpt_11833344.pth_09_15_23_50_00_auto__srca2__tpre2_tpost2_1199_1200_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_16_25_28_ckpt_11833344.pth_09_15_23_50_00_auto__srca2__tpre2_tpost2_1199_1200_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000057",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_16_25_28_ckpt_11833344.pth_09_15_23_50_00_auto__srca2__tpre2_tpost2_528_540_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_16_25_28_ckpt_11833344.pth_09_15_23_50_00_auto__srca2__tpre2_tpost2_528_540_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000058",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_16_55_34_ckpt_11833344.pth_09_16_00_21_40_auto__srca1__tpre2_tpost2_2960_4220_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_16_55_34_ckpt_11833344.pth_09_16_00_21_40_auto__srca1__tpre2_tpost2_2960_4220_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000059",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_16_55_34_ckpt_11833344.pth_09_16_00_21_40_auto__srca2__tpre2_tpost2_42_60_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_16_55_34_ckpt_11833344.pth_09_16_00_21_40_auto__srca2__tpre2_tpost2_42_60_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000060",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_16_55_34_ckpt_11833344.pth_09_16_00_21_40_auto__srca2__tpre2_tpost2_890_1160_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_16_55_34_ckpt_11833344.pth_09_16_00_21_40_auto__srca2__tpre2_tpost2_890_1160_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000061",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_17_19_22_ckpt_11833344.pth_09_16_00_52_26_auto__srca1__tpre2_tpost2_1400_2569_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_17_19_22_ckpt_11833344.pth_09_16_00_52_26_auto__srca1__tpre2_tpost2_1400_2569_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000062",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_17_19_22_ckpt_11833344.pth_09_16_00_52_26_auto__srca1__tpre2_tpost2_980_1376_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_17_19_22_ckpt_11833344.pth_09_16_00_52_26_auto__srca1__tpre2_tpost2_980_1376_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000063",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_17_19_22_ckpt_11833344.pth_09_16_00_52_26_auto__srca2__tpre2_tpost2_1981_3760_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_17_19_22_ckpt_11833344.pth_09_16_00_52_26_auto__srca2__tpre2_tpost2_1981_3760_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000064",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_17_34_52_ckpt_11833344.pth_09_16_01_31_36_auto__srca1__tpre2_tpost2_760_748_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_17_34_52_ckpt_11833344.pth_09_16_01_31_36_auto__srca1__tpre2_tpost2_760_748_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000065",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_17_34_52_ckpt_11833344.pth_09_16_01_31_36_auto__srca1__tpre2_tpost2_80_77_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_17_34_52_ckpt_11833344.pth_09_16_01_31_36_auto__srca1__tpre2_tpost2_80_77_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000066",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_17_34_52_ckpt_11833344.pth_09_16_01_31_36_auto__srca2__tpre2_tpost2_1711_1720_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_17_34_52_ckpt_11833344.pth_09_16_01_31_36_auto__srca2__tpre2_tpost2_1711_1720_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000067",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_00_01_ckpt_11833344.pth_09_16_02_10_51_auto__srca1__tpre2_tpost2_480_1331_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_00_01_ckpt_11833344.pth_09_16_02_10_51_auto__srca1__tpre2_tpost2_480_1331_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000068",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_00_01_ckpt_11833344.pth_09_16_02_10_51_auto__srca2__tpre2_tpost2_1219_1840_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_00_01_ckpt_11833344.pth_09_16_02_10_51_auto__srca2__tpre2_tpost2_1219_1840_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000069",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_00_01_ckpt_11833344.pth_09_16_02_10_51_auto__srca2__tpre2_tpost2_183_580_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_00_01_ckpt_11833344.pth_09_16_02_10_51_auto__srca2__tpre2_tpost2_183_580_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000070",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_09_41_ckpt_11833344.pth_09_16_02_24_10_auto__srca1__tpre2_tpost2_480_484_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_09_41_ckpt_11833344.pth_09_16_02_24_10_auto__srca1__tpre2_tpost2_480_484_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000071",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_09_41_ckpt_11833344.pth_09_16_02_24_10_auto__srca1__tpre2_tpost2_680_698_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_09_41_ckpt_11833344.pth_09_16_02_24_10_auto__srca1__tpre2_tpost2_680_698_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000072",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_09_41_ckpt_11833344.pth_09_16_02_24_10_auto__srca1__tpre2_tpost2_860_1488_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_09_41_ckpt_11833344.pth_09_16_02_24_10_auto__srca1__tpre2_tpost2_860_1488_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000073",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_18_13_ckpt_11833344.pth_09_16_02_38_27_auto__srca1__tpre2_tpost2_1200_2156_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_18_13_ckpt_11833344.pth_09_16_02_38_27_auto__srca1__tpre2_tpost2_1200_2156_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000074",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_18_13_ckpt_11833344.pth_09_16_02_38_27_auto__srca2__tpre2_tpost2_1633_2300_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_18_13_ckpt_11833344.pth_09_16_02_38_27_auto__srca2__tpre2_tpost2_1633_2300_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000075",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_18_13_ckpt_11833344.pth_09_16_02_38_27_auto__srca2__tpre2_tpost2_1713_2440_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_18_13_ckpt_11833344.pth_09_16_02_38_27_auto__srca2__tpre2_tpost2_1713_2440_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000076",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_39_53_ckpt_11833344.pth_09_16_03_03_31_auto__srca1__tpre2_tpost2_3957_5101_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_39_53_ckpt_11833344.pth_09_16_03_03_31_auto__srca1__tpre2_tpost2_3957_5101_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000077",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_39_53_ckpt_11833344.pth_09_16_03_03_31_auto__srca1__tpre2_tpost2_480_470_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_39_53_ckpt_11833344.pth_09_16_03_03_31_auto__srca1__tpre2_tpost2_480_470_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000078",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_39_53_ckpt_11833344.pth_09_16_03_03_31_auto__srca2__tpre2_tpost2_2936_3400_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_18_39_53_ckpt_11833344.pth_09_16_03_03_31_auto__srca2__tpre2_tpost2_2936_3400_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000079",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_19_07_39_ckpt_11833344.pth_09_16_03_35_47_auto__srca1__tpre2_tpost2_1080_1329_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_19_07_39_ckpt_11833344.pth_09_16_03_35_47_auto__srca1__tpre2_tpost2_1080_1329_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000080",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_19_07_39_ckpt_11833344.pth_09_16_03_35_47_auto__srca1__tpre2_tpost2_840_880_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_19_07_39_ckpt_11833344.pth_09_16_03_35_47_auto__srca1__tpre2_tpost2_840_880_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000081",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_19_07_39_ckpt_11833344.pth_09_16_03_35_47_auto__srca2__tpre2_tpost2_913_940_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_19_07_39_ckpt_11833344.pth_09_16_03_35_47_auto__srca2__tpre2_tpost2_913_940_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000082",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_19_27_46_ckpt_11833344.pth_09_16_03_56_48_auto__srca1__tpre2_tpost2_1240_2376_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_19_27_46_ckpt_11833344.pth_09_16_03_56_48_auto__srca1__tpre2_tpost2_1240_2376_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000083",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_19_27_46_ckpt_11833344.pth_09_16_03_56_48_auto__srca1__tpre2_tpost2_380_1335_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_19_27_46_ckpt_11833344.pth_09_16_03_56_48_auto__srca1__tpre2_tpost2_380_1335_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000084",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_19_27_46_ckpt_11833344.pth_09_16_03_56_48_auto__srca2__tpre2_tpost2_1891_3420_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_19_27_46_ckpt_11833344.pth_09_16_03_56_48_auto__srca2__tpre2_tpost2_1891_3420_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000085",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_19_54_18_ckpt_11833344.pth_09_16_04_30_28_auto__srca1__tpre2_tpost2_1940_2540_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_19_54_18_ckpt_11833344.pth_09_16_04_30_28_auto__srca1__tpre2_tpost2_1940_2540_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000086",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_19_54_18_ckpt_11833344.pth_09_16_04_30_28_auto__srca2__tpre2_tpost2_1183_1640_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_19_54_18_ckpt_11833344.pth_09_16_04_30_28_auto__srca2__tpre2_tpost2_1183_1640_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000087",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_19_54_18_ckpt_11833344.pth_09_16_04_30_28_auto__srca2__tpre2_tpost2_2708_3300_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_19_54_18_ckpt_11833344.pth_09_16_04_30_28_auto__srca2__tpre2_tpost2_2708_3300_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000088",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_20_44_15_ckpt_11833344.pth_09_16_05_24_08_auto__srca1__tpre2_tpost2_20_21_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_20_44_15_ckpt_11833344.pth_09_16_05_24_08_auto__srca1__tpre2_tpost2_20_21_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000089",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_20_44_15_ckpt_11833344.pth_09_16_05_24_08_auto__srca2__tpre2_tpost2_1711_3000_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_20_44_15_ckpt_11833344.pth_09_16_05_24_08_auto__srca2__tpre2_tpost2_1711_3000_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000090",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_20_44_15_ckpt_11833344.pth_09_16_05_24_08_auto__srca2__tpre2_tpost2_977_1660_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_20_44_15_ckpt_11833344.pth_09_16_05_24_08_auto__srca2__tpre2_tpost2_977_1660_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000091",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_21_01_56_ckpt_11833344.pth_09_16_05_51_25_auto__srca2__tpre2_tpost2_139_420_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_21_01_56_ckpt_11833344.pth_09_16_05_51_25_auto__srca2__tpre2_tpost2_139_420_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000092",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_21_01_56_ckpt_11833344.pth_09_16_05_51_25_auto__srca2__tpre2_tpost2_1412_1980_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_21_01_56_ckpt_11833344.pth_09_16_05_51_25_auto__srca2__tpre2_tpost2_1412_1980_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000093",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_21_01_56_ckpt_11833344.pth_09_16_05_51_25_auto__srca2__tpre2_tpost2_1900_2860_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_21_01_56_ckpt_11833344.pth_09_16_05_51_25_auto__srca2__tpre2_tpost2_1900_2860_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000094",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_21_25_37_ckpt_11833344.pth_09_16_06_35_55_auto__srca1__tpre2_tpost2_1040_1033_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_21_25_37_ckpt_11833344.pth_09_16_06_35_55_auto__srca1__tpre2_tpost2_1040_1033_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000095",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_21_25_37_ckpt_11833344.pth_09_16_06_35_55_auto__srca1__tpre2_tpost2_3180_2750_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_21_25_37_ckpt_11833344.pth_09_16_06_35_55_auto__srca1__tpre2_tpost2_3180_2750_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000096",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_21_25_37_ckpt_11833344.pth_09_16_06_35_55_auto__srca1__tpre2_tpost2_900_1563_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_21_25_37_ckpt_11833344.pth_09_16_06_35_55_auto__srca1__tpre2_tpost2_900_1563_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000097",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_22_02_43_ckpt_11833344.pth_09_16_07_17_05_auto__srca1__tpre2_tpost2_1660_2078_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_22_02_43_ckpt_11833344.pth_09_16_07_17_05_auto__srca1__tpre2_tpost2_1660_2078_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000098",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_22_02_43_ckpt_11833344.pth_09_16_07_17_05_auto__srca1__tpre2_tpost2_2400_3301_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_22_02_43_ckpt_11833344.pth_09_16_07_17_05_auto__srca1__tpre2_tpost2_2400_3301_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000099",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_22_02_43_ckpt_11833344.pth_09_16_07_17_05_auto__srca2__tpre2_tpost2_763_1160_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_22_02_43_ckpt_11833344.pth_09_16_07_17_05_auto__srca2__tpre2_tpost2_763_1160_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000100",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_22_18_51_ckpt_11833344.pth_09_16_07_39_03_auto__srca1__tpre2_tpost2_3700_4805_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_22_18_51_ckpt_11833344.pth_09_16_07_39_03_auto__srca1__tpre2_tpost2_3700_4805_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000101",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_22_18_51_ckpt_11833344.pth_09_16_07_39_03_auto__srca1__tpre2_tpost2_3900_5010_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_22_18_51_ckpt_11833344.pth_09_16_07_39_03_auto__srca1__tpre2_tpost2_3900_5010_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000102",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_22_18_51_ckpt_11833344.pth_09_16_07_39_03_auto__srca2__tpre2_tpost2_3466_4340_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_22_18_51_ckpt_11833344.pth_09_16_07_39_03_auto__srca2__tpre2_tpost2_3466_4340_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000103",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_22_44_14_ckpt_11833344.pth_09_16_08_11_42_auto__srca1__tpre2_tpost2_2740_3167_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_22_44_14_ckpt_11833344.pth_09_16_08_11_42_auto__srca1__tpre2_tpost2_2740_3167_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000104",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_22_44_14_ckpt_11833344.pth_09_16_08_11_42_auto__srca1__tpre2_tpost2_3020_3650_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_22_44_14_ckpt_11833344.pth_09_16_08_11_42_auto__srca1__tpre2_tpost2_3020_3650_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000105",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_22_44_14_ckpt_11833344.pth_09_16_08_11_42_auto__srca2__tpre2_tpost2_3199_4340_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_22_44_14_ckpt_11833344.pth_09_16_08_11_42_auto__srca2__tpre2_tpost2_3199_4340_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000106",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_23_16_43_ckpt_11833344.pth_09_16_08_45_49_auto__srca2__tpre2_tpost2_1274_5760_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_23_16_43_ckpt_11833344.pth_09_16_08_45_49_auto__srca2__tpre2_tpost2_1274_5760_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000107",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_23_16_43_ckpt_11833344.pth_09_16_08_45_49_auto__srca2__tpre2_tpost2_436_500_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_23_16_43_ckpt_11833344.pth_09_16_08_45_49_auto__srca2__tpre2_tpost2_436_500_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000108",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_23_16_43_ckpt_11833344.pth_09_16_08_45_49_auto__srca2__tpre2_tpost2_724_1620_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_16_23_16_43_ckpt_11833344.pth_09_16_08_45_49_auto__srca2__tpre2_tpost2_724_1620_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000109",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_17_00_00_12_ckpt_11833344.pth_09_16_09_39_48_auto__srca1__tpre2_tpost2_2620_4787_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_17_00_00_12_ckpt_11833344.pth_09_16_09_39_48_auto__srca1__tpre2_tpost2_2620_4787_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000110",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_17_00_00_12_ckpt_11833344.pth_09_16_09_39_48_auto__srca2__tpre2_tpost2_4322_6180_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_17_00_00_12_ckpt_11833344.pth_09_16_09_39_48_auto__srca2__tpre2_tpost2_4322_6180_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000111",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_17_00_00_12_ckpt_11833344.pth_09_16_09_39_48_auto__srca2__tpre2_tpost2_4576_6480_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_17_00_00_12_ckpt_11833344.pth_09_16_09_39_48_auto__srca2__tpre2_tpost2_4576_6480_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000112",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_17_00_37_32_ckpt_11833344.pth_09_16_10_26_13_auto__srca2__tpre2_tpost2_30_3540_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_17_00_37_32_ckpt_11833344.pth_09_16_10_26_13_auto__srca2__tpre2_tpost2_30_3540_agent2.mp4",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000113",
+    "left_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_17_00_37_32_ckpt_11833344.pth_09_16_10_26_13_auto__srca2__tpre2_tpost2_91_3720_agent1.mp4",
+    "right_clip": "videos/early_late_mi_training/ckpt_1105920.pth_09_17_00_37_32_ckpt_11833344.pth_09_16_10_26_13_auto__srca2__tpre2_tpost2_91_3720_agent2.mp4",
+    "description": "clips"
+  }
+]
