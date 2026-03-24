@@ -841,7 +841,6 @@ async function submitStagedAnnotation() {
                     else staged.surpriseChoice = "none";
 
                     markStepAdvance(STEPS.ATTENTION);
-                }
             } else if (step === STEPS.ATTENTION) {
                 if (e.key === "x" || e.key === "X") {
                     e.preventDefault();
