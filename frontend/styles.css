@@ -154,3 +154,36 @@ video {
   font-size: 16px;
 }
 
+  #rlhfPlaceholders {
+    align-items: stretch;
+  }
+
+.rlhf-box {
+  flex: 1;
+  min-height: 280px;
+  border: 2px dashed #98a2b3;
+  border-radius: 12px;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.rlhf-title {
+  padding: 12px 16px;
+  font: 700 14px system-ui;
+  letter-spacing: 0.08em;
+  text-align: center;
+  color: #fff;
+  background: #2980b9;
+}
+
+.rlhf-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 600 18px system-ui;
+  color: #475467;
+}
+
