@@ -120,7 +120,7 @@ video {
 }
 
 #videos {
-  height: calc(100vh - var(--header) - var(--footer) - var(--text-height) + 220px);
+  height: calc(100vh - var(--header) - var(--footer) - var(--text-height) + 120px);
   display: flex;
   flex-direction: column;
   gap: var(--gap);
@@ -128,7 +128,7 @@ video {
 }
 
 #videos > .video-container {
-  height: calc((100% - var(--gap)) / 2) + 180px;
+  height: calc((100% - var(--gap)) / 2) + 100px;
   min-height: 0;
   min-width: 0;
   display: flex;
