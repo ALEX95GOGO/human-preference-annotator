@@ -155,48 +155,48 @@ function renderStepUI() {
       <button onclick="handleChoice('right')">Prefer Right</button>
       <button onclick="handleChoice('cant_tell')">Can't Tell</button>`;
     } else if (step === STEPS.SURPRISE) {
-        // ✅ Back to 1–5 ratings for BOTH clips
-        buttons.innerHTML = `
+    buttons.innerHTML = `
       <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
         <div>
-          <div style="font-weight:600;margin-bottom:4px">clip</div>
+          <div style="font-weight:600;margin-bottom:4px">Clip</div>
           ${[1, 2, 3, 4, 5]
               .map((v) => `<button data-side="left" data-val="${v}" class="surBtn">${v}</button>`)
               .join(" ")}
-          <span id="leftSurVal" style="margin-left:8px; margin-right: 18px;">${
-              staged.surprise.left ?? "—"
-          }</span>
+          <span id="leftSurVal" style="margin-left:8px; margin-right:18px;">
+            ${staged.surprise.left ?? "—"}
+          </span>
         </div>
-       
-        // <div>
-        //   <div style="font-weight:600;margin-bottom:4px">Down clip</div>
-        //   ${[1, 2, 3, 4, 5]
-        //       .map((v) => `<button data-side="right" data-val="${v}" class="surBtn">${v}</button>`)
-        //       .join(" ")}
-        //   <span id="rightSurVal" style="margin-left:8px; margin-right: 18px;">${
-        //       staged.surprise.right ?? "—"
-        //   }</span>
-        // </div>
 
         <div><button id="surpriseNext" disabled>Next</button></div>
       </div>`;
 
-        const nextBtn = buttons.querySelector("#surpriseNext");
-        const refreshNext = () => {
-            nextBtn.disabled = !(staged.surprise.left && staged.surprise.right);
-        };
+    const nextBtn = buttons.querySelector("#surpriseNext");
 
-        buttons.querySelectorAll(".surBtn").forEach((b) => {
-            b.addEventListener("click", () => {
-                const side = b.dataset.side;
-                const val = Number(b.dataset.val);
-                staged.surprise[side] = val;
+    const refreshNext = () => {
+        nextBtn.disabled = !staged.surprise.left;
+    };
 
-                document.getElementById(side === "left" ? "leftSurVal" : "rightSurVal").textContent =
-                    val;
-                refreshNext();
-            });
+    buttons.querySelectorAll(".surBtn").forEach((b) => {
+        b.addEventListener("click", () => {
+            const val = Number(b.dataset.val);
+            staged.surprise.left = val;
+
+            const leftVal = document.getElementById("leftSurVal");
+            if (leftVal) leftVal.textContent = val;
+
+            refreshNext();
         });
+    });
+
+    nextBtn.addEventListener("click", () => {
+        if (!staged.surprise.left) return;
+
+        staged.surpriseChoice = "left";
+        markStepAdvance(STEPS.ATTENTION);
+    });
+
+    refreshNext();
+}
 
         nextBtn.addEventListener("click", () => {
             if (!(staged.surprise.left && staged.surprise.right)) return;
@@ -820,19 +820,24 @@ async function submitStagedAnnotation() {
                     handleChoice("cant_tell");
                 }
             } else if (step === STEPS.SURPRISE) {
-                // ✅ 1–5 for Up (left), Q–T for Down (right)
-                const leftMap = { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5 };
-                const rightMap = { q: 1, w: 2, e: 3, r: 4, t: 5, Q: 1, W: 2, E: 3, R: 4, T: 5 };
-
-                if (leftMap[e.key] != null) {
-                    staged.surprise.left = leftMap[e.key];
+                const oneMap = { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5 };
+            
+                if (oneMap[e.key] != null) {
+                    staged.surprise.left = oneMap[e.key];
                     const s = document.getElementById("leftSurVal");
                     if (s) s.textContent = staged.surprise.left;
-                } else if (rightMap[e.key] != null) {
-                    staged.surprise.right = rightMap[e.key];
-                    const s = document.getElementById("rightSurVal");
-                    if (s) s.textContent = staged.surprise.right;
                 }
+            
+                const nextBtn = document.getElementById("surpriseNext");
+                const canNext = !!staged.surprise.left;
+                if (nextBtn) nextBtn.disabled = !canNext;
+            
+                if (e.key === "Enter" && canNext) {
+                    e.preventDefault();
+                    staged.surpriseChoice = "left";
+                    markStepAdvance(STEPS.ATTENTION);
+                }
+            }
 
                 const nextBtn = document.getElementById("surpriseNext");
                 const canNext = !!staged.surprise.left && !!staged.surprise.right;
