@@ -141,7 +141,7 @@ function renderStepUI() {
     notes.innerHTML =
         // `<p id="instructions"><strong>${stepName}</strong></p>` +
         step === STEPS.PREF
-            ? `<p id="instructions">Choose the clip you prefer (ArrowLeft = Up, ArrowRight = Down, ArrowDown = Can't tell).</p>`
+            ? `<p id="instructions">Choose the clip you prefer (ArrowLeft = Left, ArrowRight = Right, ArrowDown = Can't tell).</p>`
             : step === STEPS.SURPRISE
             ? `<p id="instructions">Rate how <em>surprising</em> each clip felt (1 = not at all, 5 = very). Hotkeys: 1-5 for Up, Q-T for Down.</p>`
             : `<p id="instructions">Mark the spot that drove your choice on the <b>${
@@ -150,8 +150,8 @@ function renderStepUI() {
 
     if (step === STEPS.PREF) {
         buttons.innerHTML = `
-      <button onclick="handleChoice('left')">Prefer Up</button>
-      <button onclick="handleChoice('right')">Prefer Down</button>
+      <button onclick="handleChoice('left')">Prefer Left</button>
+      <button onclick="handleChoice('right')">Prefer Right</button>
       <button onclick="handleChoice('cant_tell')">Can't Tell</button>`;
     } else if (step === STEPS.SURPRISE) {
         // ✅ Back to 1–5 ratings for BOTH clips
@@ -211,7 +211,7 @@ function renderStepUI() {
         refreshNext();
     } else if (step === STEPS.ATTENTION) {
         const side = staged?.preference; // "left" | "right"
-        const label = side === "left" ? "Up" : "Down";
+        const label = side === "left" ? "Left" : "Right";
         notes.innerHTML = `<p id="instructions">Replay in pause-sampling: we'll pause every <b>${PAUSE_SAMPLE_MS}ms</b>. Add <em>multiple</em> points at each stop, then press Space/Enter to continue.</p>`;
         buttons.innerHTML = `
       <button id="startPS">Start pause-sampling on ${label}</button>
@@ -293,59 +293,49 @@ function renderPair(pair) {
     const leftVideo = document.getElementById("leftVideo");
     const rightVideo = document.getElementById("rightVideo");
 
-    // ✅ ONLY DISPLAY LEFT VIDEO (hide right video UI, don't load/play it)
-    const rightWrap = rightVideo?.parentElement;
-    if (rightWrap) rightWrap.style.display = "none";
-    try {
-        rightVideo.pause();
-        rightVideo.removeAttribute("src");
-        rightVideo.load();
-    } catch (_) {}
-
     // autoplay setup
     leftVideo.muted = true;
-    leftVideo.setAttribute("muted", "");
-    leftVideo.setAttribute("playsinline", "");
-    leftVideo.autoplay = true;
-    leftVideo.preload = "auto";
-
-    // keep right video muted attributes (doesn't matter if hidden)
     rightVideo.muted = true;
+    leftVideo.setAttribute("muted", "");
     rightVideo.setAttribute("muted", "");
+    leftVideo.setAttribute("playsinline", "");
     rightVideo.setAttribute("playsinline", "");
+    leftVideo.autoplay = true;
     rightVideo.autoplay = true;
+    leftVideo.preload = "auto";
     rightVideo.preload = "auto";
 
     leftVideo.src = pair.left_clip;
-    // rightVideo.src = pair.right_clip; // ❌ don't load it
+    rightVideo.src = pair.right_clip;
 
     leftVideo.load();
+    rightVideo.load();
 
     // try autoplay. If blocked, show overlay and start on user gesture.
     const tryAutoplay = async () => {
         try {
-            await leftVideo.play(); // ✅ only left
+            await Promise.all([leftVideo.play(), rightVideo.play()]);
             presentedTime = new Date();
         } catch (e) {
             showStartOverlay(async () => {
-                await Promise.allSettled([leftVideo.play()]);
+                await Promise.allSettled([leftVideo.play(), rightVideo.play()]);
                 presentedTime = new Date();
             });
         }
     };
     const maybeStart = () => {
-        if (leftVideo.readyState >= 3) {
+        if (leftVideo.readyState >= 3 && rightVideo.readyState >= 3) {
             tryAutoplay();
             leftVideo.removeEventListener("canplay", maybeStart);
+            rightVideo.removeEventListener("canplay", maybeStart);
         }
     };
     leftVideo.addEventListener("canplay", maybeStart);
+    rightVideo.addEventListener("canplay", maybeStart);
 
     leftVideo.loop = true;
-    leftVideo.controls = true;
-
-    // keep right config as-is (hidden anyway)
     rightVideo.loop = true;
+    leftVideo.controls = true;
     rightVideo.controls = true;
 
     resetStepperForPair();
@@ -738,8 +728,7 @@ async function loadNextPair() {
 window.onload = () => {
     loadNextPair();
     attachProgress("leftVideo", "leftProgress");
-    // ✅ only left progress (right hidden)
-    // attachProgress("rightVideo", "rightProgress");
+    attachProgress("rightVideo", "rightProgress");
 };
 
 async function submitStagedAnnotation() {
