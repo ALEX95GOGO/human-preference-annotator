@@ -151,15 +151,15 @@ function renderStepUI() {
 
     if (step === STEPS.PREF) {
         buttons.innerHTML = `
-      <button onclick="handleChoice('left')">Prefer Up</button>
-      <button onclick="handleChoice('right')">Prefer Down</button>
+      <button onclick="handleChoice('left')">Prefer Left</button>
+      <button onclick="handleChoice('right')">Prefer Right</button>
       <button onclick="handleChoice('cant_tell')">Can't Tell</button>`;
     } else if (step === STEPS.SURPRISE) {
         // ✅ Back to 1–5 ratings for BOTH clips
         buttons.innerHTML = `
       <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
         <div>
-          <div style="font-weight:600;margin-bottom:4px">Up clip</div>
+          <div style="font-weight:600;margin-bottom:4px">clip</div>
           ${[1, 2, 3, 4, 5]
               .map((v) => `<button data-side="left" data-val="${v}" class="surBtn">${v}</button>`)
               .join(" ")}
@@ -167,16 +167,16 @@ function renderStepUI() {
               staged.surprise.left ?? "—"
           }</span>
         </div>
-
-        <div>
-          <div style="font-weight:600;margin-bottom:4px">Down clip</div>
-          ${[1, 2, 3, 4, 5]
-              .map((v) => `<button data-side="right" data-val="${v}" class="surBtn">${v}</button>`)
-              .join(" ")}
-          <span id="rightSurVal" style="margin-left:8px; margin-right: 18px;">${
-              staged.surprise.right ?? "—"
-          }</span>
-        </div>
+       
+        // <div>
+        //   <div style="font-weight:600;margin-bottom:4px">Down clip</div>
+        //   ${[1, 2, 3, 4, 5]
+        //       .map((v) => `<button data-side="right" data-val="${v}" class="surBtn">${v}</button>`)
+        //       .join(" ")}
+        //   <span id="rightSurVal" style="margin-left:8px; margin-right: 18px;">${
+        //       staged.surprise.right ?? "—"
+        //   }</span>
+        // </div>
 
         <div><button id="surpriseNext" disabled>Next</button></div>
       </div>`;
