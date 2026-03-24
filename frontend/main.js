@@ -277,6 +277,20 @@ function showStartOverlay(onStart) {
 }
 
 function renderPair(pair) {
+
+    currentPair = pair;
+
+    // 👉 set text
+    const leftTextEl = document.getElementById("leftText");
+    const rightTextEl = document.getElementById("rightText");
+
+    if (leftTextEl) leftTextEl.textContent = pair.left_text || "—";
+    if (rightTextEl) rightTextEl.textContent = pair.right_text || "—";
+
+    // keep your existing logic if needed
+    document.getElementById("description").innerText =
+        `Task: ${pair.description}`;
+
     currentPair = pair;
     annotatorId = pair.progress?.annotatorId || "anonymous";
     document.getElementById("annotatorIdDisplay").innerText = `Annotator ID: ${annotatorId}`;
