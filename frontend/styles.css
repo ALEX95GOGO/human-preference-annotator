@@ -128,7 +128,7 @@ video {
 }
 
 #videos > .video-container {
-  height: calc((100% - var(--gap)) / 2) + 250px;
+  height: calc((100% - var(--gap)) / 2) + 180px;
   min-height: 0;
   min-width: 0;
   display: flex;
