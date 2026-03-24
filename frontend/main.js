@@ -11,7 +11,8 @@ if (!token) {
 localStorage.setItem("token", token);
 const ATTN_TIMEOUT = 10000; // 10s
 // Pause-sampling config: default 1000 ms; override via ?ps=NNN
-const PAUSE_SAMPLE_MS = Math.max(200, Number(urlParams.get("ps") || 1000)); // clamp min 200ms
+// const PAUSE_SAMPLE_MS = Math.max(200, Number(urlParams.get("ps") || 1000)); // clamp min 200ms
+const PAUSE_SAMPLE_MS = 500
 
 function logout() {
     localStorage.removeItem("token");
