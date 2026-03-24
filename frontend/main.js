@@ -198,19 +198,7 @@ function renderStepUI() {
     refreshNext();
 }
 
-        nextBtn.addEventListener("click", () => {
-            if (!(staged.surprise.left && staged.surprise.right)) return;
-
-            // Optional: preserve old field by deriving a choice from scores
-            if (staged.surprise.left > staged.surprise.right) staged.surpriseChoice = "left";
-            else if (staged.surprise.right > staged.surprise.left) staged.surpriseChoice = "right";
-            else staged.surpriseChoice = "none";
-
-            markStepAdvance(STEPS.ATTENTION);
-        });
-
-        refreshNext();
-    } else if (step === STEPS.ATTENTION) {
+    else if (step === STEPS.ATTENTION) {
         const side = staged?.preference; // "left" | "right"
         const label = side === "left" ? "Up" : "Down";
         notes.innerHTML = `<p id="instructions">Replay in pause-sampling: we'll pause every <b>${PAUSE_SAMPLE_MS}ms</b>. Add <em>multiple</em> points at each stop, then press Space/Enter to continue.</p>`;
