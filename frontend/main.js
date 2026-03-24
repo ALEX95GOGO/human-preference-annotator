@@ -4,15 +4,16 @@ const API_BASE = "https://human-preference-annotator.onrender.com/api";
 
 const urlParams = new URLSearchParams(window.location.search);
 const token = urlParams.get("token");
+
 if (!token) {
     document.body.innerHTML = "<h2>Invalid or missing token. Access denied.</h2>";
     throw new Error("Missing token");
 }
+
 localStorage.setItem("token", token);
+
 const ATTN_TIMEOUT = 10000; // 10s
-// Pause-sampling config: default 1000 ms; override via ?ps=NNN
-// const PAUSE_SAMPLE_MS = Math.max(200, Number(urlParams.get("ps") || 1000)); // clamp min 200ms
-const PAUSE_SAMPLE_MS = 500
+const PAUSE_SAMPLE_MS = 500;
 
 function logout() {
     localStorage.removeItem("token");
@@ -28,28 +29,28 @@ let pendingChoice = null;
 let decisionAtMs = null;
 let regionTimeoutId = null;
 
-// Pause-sampling (PS) lifecycle control
-let psAbort = null; // AbortController used to fence all PS listeners
-let psActive = false; // true while a PS session is in progress
+// Pause-sampling lifecycle
+let psAbort = null;
+let psActive = false;
 
-function cancelPauseSampling() {
-    // Abort all PS event listeners and reset flags/UI
-    try {
-        psAbort?.abort();
-    } catch (_) {}
-    psAbort = null;
-    psActive = false;
-    awaitingRegion = false;
-    // remove any lingering overlays
-    document.getElementById("multiOverlay")?.remove();
-    document.getElementById("pointOverlay")?.remove();
-}
-
-// 3-step annotation state (Preference, Surprise, Attention)
+// 3-step annotation state
 const STEPS = { PREF: 0, SURPRISE: 1, ATTENTION: 2 };
 const STEP_LABELS = ["Preference", "Surprise", "Attention"];
 let step = STEPS.PREF;
 let staged = null;
+
+function cancelPauseSampling() {
+    try {
+        psAbort?.abort();
+    } catch (_) {}
+
+    psAbort = null;
+    psActive = false;
+    awaitingRegion = false;
+
+    document.getElementById("multiOverlay")?.remove();
+    document.getElementById("pointOverlay")?.remove();
+}
 
 function ensureTopStepperEl() {
     let el = document.getElementById("stepper");
@@ -58,7 +59,7 @@ function ensureTopStepperEl() {
         el = document.createElement("div");
         el.id = "stepper";
         el.style.marginTop = "6px";
-        host && host.appendChild(el);
+        host?.appendChild(el);
     }
     return el;
 }
@@ -76,20 +77,20 @@ function updateTopStepper(activeStepIdx = 0) {
         const connectorColor = idx < activeStepIdx ? "#2ecc71" : "#d0d7de";
 
         return `
-      <div style="position:relative; display:flex; align-items:center;">
+      <div style="position:relative; display:flex; align-items:center; flex:1;">
         <div style="
           width:22px;height:22px;border-radius:999px;
           background:${circleBg}; color:${circleColor};
           display:flex;align-items:center;justify-content:center;
           font:600 12px system-ui; border:${border};
-          box-shadow: ${status !== "todo" ? "0 0 0 2px rgba(0,0,0,0.06) inset" : "none"};
+          box-shadow:${status !== "todo" ? "0 0 0 2px rgba(0,0,0,0.06) inset" : "none"};
         ">${idx + 1}</div>
         <div style="margin-left:8px; min-width:88px; font:600 12px system-ui; color:#111;">
           ${label}
         </div>
         ${
             idx < STEP_LABELS.length - 1
-                ? `<div style="flex:1;height:2px;background:${connectorColor};margin:0 14px 0 0;border-radius:2px;">\u00A0\u00A0</div>`
+                ? `<div style="flex:1;height:2px;background:${connectorColor};margin:0 14px 0 0;border-radius:2px;"></div>`
                 : ``
         }
       </div>
@@ -109,12 +110,13 @@ function resetStepperForPair() {
         preference: null,
         decisionAtMs: null,
         surpriseChoice: null,
-        surprise: { left: null, right: null },
+        surprise: { left: null, right: null }, // keep shape for backend compatibility
         attention: null,
         startedAt: Date.now(),
         stepT0: Date.now(),
         stepDurations: {},
     };
+
     renderStepUI();
     updateTopStepper(0);
 }
@@ -132,33 +134,27 @@ function renderStepUI() {
     const notes = document.getElementById("notes");
     const buttons = document.getElementById("buttons");
     const chosen = staged?.preference;
-    const stepName =
-        step === STEPS.PREF
-            ? "Step 1/3: Preference"
-            : step === STEPS.SURPRISE
-            ? "Step 2/3: Surprise"
-            : "Step 3/3: Attention";
 
     notes.innerHTML =
-        // `<p id="instructions"><strong>${stepName}</strong></p>` +
         step === STEPS.PREF
-            ? `<p id="instructions">Choose the clip you prefer (ArrowLeft = Up, ArrowRight = Down, ArrowDown = Can't tell).</p>`
+            ? `<p id="instructions">Choose the text you prefer (ArrowLeft = Left, ArrowRight = Right, ArrowDown = Can't tell).</p>`
             : step === STEPS.SURPRISE
-            ? `<p id="instructions">Rate how <em>surprising</em> each clip felt (1 = not at all, 5 = very). Hotkeys: 1-5 for Up, Q-T for Down.</p>`
-            : `<p id="instructions">Mark the spot that drove your choice on the <b>${
-                  chosen === "left" ? "Up" : "Down"
-              }</b> clip. Press X to place (or click the video). Esc cancels.</p>`;
+            ? `<p id="instructions">Rate how <em>surprising</em> the chosen answer felt (1 = not at all, 5 = very). Hotkeys: 1–5, Enter = Next.</p>`
+            : `<p id="instructions">Replay in pause-sampling on the <b>${
+                  chosen === "left" ? "Left" : "Right"
+              }</b> clip. Add <em>multiple</em> points at each stop, then press Space/Enter to continue.</p>`;
 
     if (step === STEPS.PREF) {
         buttons.innerHTML = `
       <button onclick="handleChoice('left')">Prefer Left</button>
       <button onclick="handleChoice('right')">Prefer Right</button>
-      <button onclick="handleChoice('cant_tell')">Can't Tell</button>`;
+      <button onclick="handleChoice('cant_tell')">Can't Tell</button>
+    `;
     } else if (step === STEPS.SURPRISE) {
-    buttons.innerHTML = `
+        buttons.innerHTML = `
       <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
         <div>
-          <div style="font-weight:600;margin-bottom:4px">Clip</div>
+          <div style="font-weight:600;margin-bottom:4px">Chosen answer</div>
           ${[1, 2, 3, 4, 5]
               .map((v) => `<button data-side="left" data-val="${v}" class="surBtn">${v}</button>`)
               .join(" ")}
@@ -168,52 +164,53 @@ function renderStepUI() {
         </div>
 
         <div><button id="surpriseNext" disabled>Next</button></div>
-      </div>`;
+      </div>
+    `;
 
-    const nextBtn = buttons.querySelector("#surpriseNext");
+        const nextBtn = buttons.querySelector("#surpriseNext");
 
-    const refreshNext = () => {
-        nextBtn.disabled = !staged.surprise.left;
-    };
+        const refreshNext = () => {
+            nextBtn.disabled = !staged.surprise.left;
+        };
 
-    buttons.querySelectorAll(".surBtn").forEach((b) => {
-        b.addEventListener("click", () => {
-            const val = Number(b.dataset.val);
-            staged.surprise.left = val;
+        buttons.querySelectorAll(".surBtn").forEach((b) => {
+            b.addEventListener("click", () => {
+                const val = Number(b.dataset.val);
+                staged.surprise.left = val;
 
-            const leftVal = document.getElementById("leftSurVal");
-            if (leftVal) leftVal.textContent = val;
+                const leftVal = document.getElementById("leftSurVal");
+                if (leftVal) leftVal.textContent = val;
 
-            refreshNext();
+                refreshNext();
+            });
         });
-    });
 
-    nextBtn.addEventListener("click", () => {
-        if (!staged.surprise.left) return;
+        nextBtn.addEventListener("click", () => {
+            if (!staged.surprise.left) return;
+            staged.surpriseChoice = "left";
+            markStepAdvance(STEPS.ATTENTION);
+        });
 
-        staged.surpriseChoice = "left";
-        markStepAdvance(STEPS.ATTENTION);
-    });
+        refreshNext();
+    } else if (step === STEPS.ATTENTION) {
+        const side = staged?.preference;
+        const label = side === "left" ? "Left" : "Right";
 
-    refreshNext();
-}
-
-    else if (step === STEPS.ATTENTION) {
-        const side = staged?.preference; // "left" | "right"
-        const label = side === "left" ? "Up" : "Down";
-        notes.innerHTML = `<p id="instructions">Replay in pause-sampling: we'll pause every <b>${PAUSE_SAMPLE_MS}ms</b>. Add <em>multiple</em> points at each stop, then press Space/Enter to continue.</p>`;
         buttons.innerHTML = `
       <button id="startPS">Start pause-sampling on ${label}</button>
       <button id="skipPS">Skip (no attention)</button>
     `;
+
         document.getElementById("startPS").addEventListener("click", () => {
             document.getElementById("startPS").disabled = true;
             document.getElementById("skipPS").disabled = true;
+
             startPauseSampling(side, (attention) => {
                 staged.attention = attention;
-                submitStagedAnnotation(); // auto-continue when done
+                submitStagedAnnotation();
             });
         });
+
         document.getElementById("skipPS").addEventListener("click", () => {
             staged.attention = null;
             submitStagedAnnotation();
@@ -222,12 +219,15 @@ function renderStepUI() {
 }
 
 function updateProgress(video, bar) {
+    if (!video || !bar || !video.duration) return;
+
     const percentage = (video.currentTime / video.duration) * 100;
     bar.style.width = `${percentage}%`;
+
     const vidProgressElm = document.getElementById("videoStatus");
     if (vidProgressElm && percentage > 85) {
         vidProgressElm.innerText = "Video Replaying...";
-    } else {
+    } else if (vidProgressElm) {
         vidProgressElm.innerText = "\u00A0";
     }
 }
@@ -235,11 +235,13 @@ function updateProgress(video, bar) {
 function attachProgress(videoId, barId) {
     const video = document.getElementById(videoId);
     const bar = document.getElementById(barId);
+    if (!video || !bar) return;
     video.addEventListener("timeupdate", () => updateProgress(video, bar));
 }
 
 function showStartOverlay(onStart) {
     let overlay = document.getElementById("startOverlay");
+
     if (!overlay) {
         overlay = document.createElement("div");
         overlay.id = "startOverlay";
@@ -249,70 +251,76 @@ function showStartOverlay(onStart) {
             '<div style="padding:12px 16px;background:#fff;border-radius:8px;font:600 14px system-ui;">Click or press Space to start playback</div>';
         document.body.appendChild(overlay);
     }
+
     const start = () => {
         overlay.removeEventListener("click", start);
         window.removeEventListener("keydown", onKey);
         overlay.remove();
         onStart();
     };
+
     const onKey = (e) => {
         if (e.key === " " || e.code === "Space" || e.key === "Spacebar") {
             e.preventDefault();
             start();
         }
     };
+
     overlay.addEventListener("click", start, { once: true });
     window.addEventListener("keydown", onKey, { once: true });
 }
 
 function renderPair(pair) {
-
-    currentPair = pair;
-
-    // 👉 set text
-    const leftTextEl = document.getElementById("leftText");
-    const rightTextEl = document.getElementById("rightText");
-
-    if (leftTextEl) leftTextEl.textContent = pair.left_text || "—";
-    if (rightTextEl) rightTextEl.textContent = pair.right_text || "—";
-
-    // keep your existing logic if needed
-    document.getElementById("description").innerText =
-        `Task: ${pair.description}`;
-
     currentPair = pair;
     annotatorId = pair.progress?.annotatorId || "anonymous";
-    document.getElementById("annotatorIdDisplay").innerText = `Annotator ID: ${annotatorId}`;
     requireRegion = !!pair._meta?.requireRegion;
 
-    document.getElementById("description").innerText =
-        `Task: ${pair.description}` +
-        (pair._meta?.isGold ? "  (GOLD)" : "") +
-        (pair._meta?.isRepeat ? "  (REPEAT)" : "");
-    document.getElementById(
-        "progress"
-    ).innerText = `Progress: ${pair.progress.completed}/${pair.progress.total} pairs`;
+    const annotatorEl = document.getElementById("annotatorIdDisplay");
+    if (annotatorEl) annotatorEl.innerText = `Annotator ID: ${annotatorId}`;
+
+    const descriptionEl = document.getElementById("description");
+    if (descriptionEl) {
+        descriptionEl.innerText =
+            `Task: ${pair.description}` +
+            (pair._meta?.isGold ? "  (GOLD)" : "") +
+            (pair._meta?.isRepeat ? "  (REPEAT)" : "");
+    }
+
+    const progressEl = document.getElementById("progress");
+    if (progressEl && pair.progress) {
+        progressEl.innerText = `Progress: ${pair.progress.completed}/${pair.progress.total} pairs`;
+    }
+
+    const leftTextEl = document.getElementById("leftText");
+    const rightTextEl = document.getElementById("rightText");
+    if (leftTextEl) leftTextEl.textContent = pair.left_text || "—";
+    if (rightTextEl) rightTextEl.textContent = pair.right_text || "—";
 
     const leftVideo = document.getElementById("leftVideo");
     const rightVideo = document.getElementById("rightVideo");
 
-    // ✅ ONLY DISPLAY LEFT VIDEO (hide right video UI, don't load/play it)
-    const rightWrap = rightVideo?.parentElement;
-    if (rightWrap) rightWrap.style.display = "none";
+    if (!leftVideo || !rightVideo) {
+        resetStepperForPair();
+        return;
+    }
+
+    // keep right side visible if you want both placeholders on screen;
+    // hide only the right video element itself if needed in CSS/HTML.
+    const rightWrap = rightVideo.parentElement;
+    if (rightWrap) rightWrap.style.display = "block";
+
     try {
         rightVideo.pause();
         rightVideo.removeAttribute("src");
         rightVideo.load();
     } catch (_) {}
 
-    // autoplay setup
     leftVideo.muted = true;
     leftVideo.setAttribute("muted", "");
     leftVideo.setAttribute("playsinline", "");
     leftVideo.autoplay = true;
     leftVideo.preload = "auto";
 
-    // keep right video muted attributes (doesn't matter if hidden)
     rightVideo.muted = true;
     rightVideo.setAttribute("muted", "");
     rightVideo.setAttribute("playsinline", "");
@@ -320,34 +328,31 @@ function renderPair(pair) {
     rightVideo.preload = "auto";
 
     leftVideo.src = pair.left_clip;
-    // rightVideo.src = pair.right_clip; // ❌ don't load it
-
     leftVideo.load();
 
-    // try autoplay. If blocked, show overlay and start on user gesture.
     const tryAutoplay = async () => {
         try {
-            await leftVideo.play(); // ✅ only left
+            await leftVideo.play();
             presentedTime = new Date();
-        } catch (e) {
+        } catch (_) {
             showStartOverlay(async () => {
                 await Promise.allSettled([leftVideo.play()]);
                 presentedTime = new Date();
             });
         }
     };
+
     const maybeStart = () => {
         if (leftVideo.readyState >= 3) {
             tryAutoplay();
             leftVideo.removeEventListener("canplay", maybeStart);
         }
     };
+
     leftVideo.addEventListener("canplay", maybeStart);
 
     leftVideo.loop = true;
     leftVideo.controls = true;
-
-    // keep right config as-is (hidden anyway)
     rightVideo.loop = true;
     rightVideo.controls = true;
 
@@ -365,7 +370,12 @@ function getNormalisedCoords(evt, el) {
 
 function showPointOverlay(side, onPick) {
     awaitingRegion = true;
+
     const video = document.getElementById(side === "left" ? "leftVideo" : "rightVideo");
+    if (!video) {
+        onPick(null);
+        return;
+    }
 
     const wrap = video.parentElement;
     wrap.style.position = wrap.style.position || "relative";
@@ -381,7 +391,6 @@ function showPointOverlay(side, onPick) {
     overlay.setAttribute("role", "dialog");
     overlay.setAttribute("aria-label", "Pick a point of attention");
 
-    // crosshair
     const marker = document.createElement("div");
     marker.style.position = "absolute";
     marker.style.width = "14px";
@@ -393,7 +402,6 @@ function showPointOverlay(side, onPick) {
     marker.style.boxShadow = "0 1px 2px rgba(0,0,0,.6)";
     overlay.appendChild(marker);
 
-    // hint
     const hint = document.createElement("div");
     hint.textContent = "Click or tap to mark attention point (Esc to cancel)";
     hint.style.position = "absolute";
@@ -407,16 +415,15 @@ function showPointOverlay(side, onPick) {
     hint.style.font = "600 12px system-ui";
     overlay.appendChild(hint);
 
-    let lastXY = null;
     const move = (evt) => {
         const { x, y } = getNormalisedCoords(evt, wrap);
-        lastXY = { x, y };
         marker.style.left = `${x * 100}%`;
         marker.style.top = `${y * 100}%`;
     };
 
     const pick = (evt) => {
         evt.preventDefault();
+
         const ping = document.createElement("div");
         ping.style.position = "absolute";
         ping.style.left = marker.style.left;
@@ -428,6 +435,7 @@ function showPointOverlay(side, onPick) {
         ping.style.opacity = "0.9";
         ping.style.transform = "translate(-50%, -50%)";
         overlay.appendChild(ping);
+
         ping.animate(
             [
                 { width: "0px", height: "0px", opacity: 0.9 },
@@ -437,7 +445,6 @@ function showPointOverlay(side, onPick) {
         ).onfinish = () => ping.remove();
 
         cleanup();
-        // Compute from the actual event in case there was no prior move.
         const { x, y } = getNormalisedCoords(evt, wrap);
         onPick({ x, y });
     };
@@ -454,7 +461,6 @@ function showPointOverlay(side, onPick) {
         }
     };
 
-    // Attach listeners
     overlay.addEventListener("mousemove", move);
     overlay.addEventListener("touchmove", move, { passive: true });
     overlay.addEventListener("click", pick);
@@ -476,7 +482,6 @@ function showPointOverlay(side, onPick) {
 
     wrap.appendChild(overlay);
 
-    // Timeout failsafe
     if (regionTimeoutId) clearTimeout(regionTimeoutId);
     regionTimeoutId = setTimeout(() => {
         cancel();
@@ -493,19 +498,18 @@ function showPointOverlay(side, onPick) {
     }
 }
 
-/**
- * showMultiPointCollector(side, onDone)
- * - Lets user add multiple points on the chosen video frame.
- * - Toolbar: Add by click/tap; Z to undo last; C to clear; Space/Enter to continue (finish this stop).
- * - Returns array of {x,y} in normalised coords via onDone(points).
- */
 function showMultiPointCollector(side, onDone) {
     awaitingRegion = true;
+
     const video = document.getElementById(side === "left" ? "leftVideo" : "rightVideo");
+    if (!video) {
+        onDone([]);
+        return;
+    }
+
     const wrap = video.parentElement;
     wrap.style.position = wrap.style.position || "relative";
 
-    // Ensure only one overlay at a time
     document.getElementById("multiOverlay")?.remove();
 
     const overlay = document.createElement("div");
@@ -518,7 +522,6 @@ function showMultiPointCollector(side, onDone) {
     overlay.setAttribute("role", "dialog");
     overlay.setAttribute("aria-label", "Mark multiple points of interest");
 
-    // Toolbar
     const bar = document.createElement("div");
     bar.style.position = "absolute";
     bar.style.left = "50%";
@@ -534,6 +537,7 @@ function showMultiPointCollector(side, onDone) {
 
     const points = [];
     const markers = [];
+
     const addMarker = (x, y) => {
         const m = document.createElement("div");
         m.style.position = "absolute";
@@ -555,19 +559,23 @@ function showMultiPointCollector(side, onDone) {
         points.push({ x, y });
         addMarker(x, y);
     };
+
     const undo = () => {
         points.pop();
         const m = markers.pop();
         if (m) m.remove();
     };
+
     const clearAll = () => {
         points.length = 0;
         while (markers.length) markers.pop().remove();
     };
+
     const finish = () => {
         cleanup();
         onDone(points.slice());
     };
+
     const onKey = (e) => {
         if (e.key === "z" || e.key === "Z") {
             e.preventDefault();
@@ -595,32 +603,36 @@ function showMultiPointCollector(side, onDone) {
     }
 }
 
-/**
- * startPauseSampling(side, onDone)
- * Pauses every N ms, collects multiple points per stop, resumes until end.
- * All listeners are attached with an AbortController to guarantee teardown.
- */
 function startPauseSampling(side, onDone) {
     const chosenVideo = document.getElementById(side === "left" ? "leftVideo" : "rightVideo");
     const otherVideo = document.getElementById(side === "left" ? "rightVideo" : "leftVideo");
 
-    // Ensure previous sessions are fully stopped
+    if (!chosenVideo || !otherVideo) {
+        onDone(null);
+        return;
+    }
+
     cancelPauseSampling();
     psAbort = new AbortController();
     const { signal } = psAbort;
     psActive = true;
 
-    // Prepare playback
     otherVideo.pause();
     chosenVideo.loop = false;
     chosenVideo.controls = false;
     chosenVideo.currentTime = 0;
     chosenVideo.muted = true;
 
-    const step = Math.max(200, Number(new URLSearchParams(location.search).get("ps") || 1000));
+    const stepMs = Math.max(
+        200,
+        Number(new URLSearchParams(location.search).get("ps") || PAUSE_SAMPLE_MS)
+    );
     const durMs = () => Math.floor((chosenVideo.duration || 0) * 1000);
     const breaks = [];
-    for (let t = step; t < durMs() + 50; t += step) breaks.push(t);
+
+    for (let t = stepMs; t < durMs() + 50; t += stepMs) {
+        breaks.push(t);
+    }
 
     const samples = [];
     let idx = 0;
@@ -635,7 +647,7 @@ function startPauseSampling(side, onDone) {
     const finish = () => {
         if (!psActive) return;
         psActive = false;
-        // Build payload and hand off
+
         const attention = {
             type: "pause-sampling",
             side,
@@ -643,23 +655,26 @@ function startPauseSampling(side, onDone) {
             samples,
             decisionAtMs: staged?.decisionAtMs ?? null,
         };
-        cancelPauseSampling(); // tear down listeners/overlays
+
+        cancelPauseSampling();
         onDone(attention);
     };
 
     const pauseAndCollect = (tsMs) => {
         if (!psActive || signal.aborted) return;
+
         chosenVideo.pause();
         showMultiPointCollector(side, (points) => {
             if (signal.aborted) return;
+
             samples.push({ tsMs, points: points || [] });
             idx += 1;
+
             if (idx >= breaks.length) {
-                // Either we're at end already, or we need to coast to ended
                 if (chosenVideo.ended || chosenVideo.duration - chosenVideo.currentTime < 0.05) {
                     finish();
                 } else {
-                    armed = false; // rely on 'ended' to finish
+                    armed = false;
                     ensurePlaying();
                 }
             } else {
@@ -671,8 +686,10 @@ function startPauseSampling(side, onDone) {
 
     const onTime = () => {
         if (!psActive || signal.aborted || !armed || idx >= breaks.length) return;
+
         const nowMs = Math.floor(chosenVideo.currentTime * 1000);
         const target = breaks[idx];
+
         if (nowMs >= target) {
             armed = false;
             pauseAndCollect(target);
@@ -688,7 +705,6 @@ function startPauseSampling(side, onDone) {
         { signal }
     );
 
-    // Kick-off
     ensurePlaying();
 }
 
@@ -701,16 +717,17 @@ function handleChoice(response) {
     decisionAtMs = chosenVideo ? Math.round(chosenVideo.currentTime * 1000) : null;
 
     if (!staged) resetStepperForPair();
+
     staged.preference = response;
     staged.decisionAtMs = decisionAtMs;
 
     if (response === "cant_tell") {
-        // Skip Surprise/Attention when annotator can't tell
         staged.surprise = { left: null, right: null };
         staged.attention = null;
         submitStagedAnnotation();
         return;
     }
+
     markStepAdvance(STEPS.SURPRISE);
 }
 
@@ -718,7 +735,9 @@ async function loadNextPair() {
     cancelPauseSampling();
     document.getElementById("multiOverlay")?.remove();
     document.getElementById("pointOverlay")?.remove();
+
     const res = await fetch(`${API_BASE}/clip-pairs?token=${token}`);
+
     if (!res.ok) {
         if (res.status === 403) {
             document.getElementById("app").innerHTML =
@@ -731,23 +750,23 @@ async function loadNextPair() {
     }
 
     const data = await res.json();
+
     if (!data) {
         document.getElementById("app").innerHTML = "<h2>All annotations complete. Thank you!</h2>";
         return;
     }
+
     renderPair(data);
 }
 
 window.onload = () => {
     loadNextPair();
     attachProgress("leftVideo", "leftProgress");
-    // ✅ only left progress (right hidden)
-    // attachProgress("rightVideo", "rightProgress");
 };
 
 async function submitStagedAnnotation() {
     cancelPauseSampling();
-    // close current step timing
+
     if (staged) {
         const now = Date.now();
         staged.stepDurations[step] =
@@ -755,7 +774,7 @@ async function submitStagedAnnotation() {
     }
 
     const response = staged.preference;
-    const attention = staged.attention; // may be null
+    const attention = staged.attention;
     const surprise = staged.surprise;
     const stageDurations = staged.stepDurations;
 
@@ -768,8 +787,8 @@ async function submitStagedAnnotation() {
         body: JSON.stringify({
             token,
             pairId: currentPair.pair_id,
-            response, // "left" | "right" | "cant_tell"
-            surpriseChoice: staged.surpriseChoice, // kept for backward compat; derived from ratings
+            response,
+            surpriseChoice: staged.surpriseChoice,
             left: { url: currentPair.left_clip, surprise: surprise?.left ?? null },
             right: { url: currentPair.right_clip, surprise: surprise?.right ?? null },
             presentedTime,
@@ -778,13 +797,13 @@ async function submitStagedAnnotation() {
             isRepeat: currentPair._meta?.isRepeat || false,
             repeatOf: currentPair._meta?.repeatOf,
             attention,
-            stageDurations, // optional; backend can ignore
+            stageDurations,
         }),
     });
+
     loadNextPair();
 }
 
-// Keyboard shortcuts: LEFT prefer left, RIGHT prefer right, DOWN means can't tell
 (function setupKeyboardShortcuts() {
     const isTextInput = (el) =>
         el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.isContentEditable);
@@ -809,45 +828,29 @@ async function submitStagedAnnotation() {
                 }
             } else if (step === STEPS.SURPRISE) {
                 const oneMap = { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5 };
-            
+
                 if (oneMap[e.key] != null) {
                     staged.surprise.left = oneMap[e.key];
                     const s = document.getElementById("leftSurVal");
                     if (s) s.textContent = staged.surprise.left;
                 }
-            
+
                 const nextBtn = document.getElementById("surpriseNext");
                 const canNext = !!staged.surprise.left;
                 if (nextBtn) nextBtn.disabled = !canNext;
-            
+
                 if (e.key === "Enter" && canNext) {
                     e.preventDefault();
                     staged.surpriseChoice = "left";
                     markStepAdvance(STEPS.ATTENTION);
                 }
-            }
-
-                const nextBtn = document.getElementById("surpriseNext");
-                const canNext = !!staged.surprise.left && !!staged.surprise.right;
-                if (nextBtn) nextBtn.disabled = !canNext;
-
-                if (e.key === "Enter" && canNext) {
-                    e.preventDefault();
-
-                    // Optional: preserve old field by deriving a choice from scores
-                    if (staged.surprise.left > staged.surprise.right) staged.surpriseChoice = "left";
-                    else if (staged.surprise.right > staged.surprise.left)
-                        staged.surpriseChoice = "right";
-                    else staged.surpriseChoice = "none";
-
-                    markStepAdvance(STEPS.ATTENTION);
             } else if (step === STEPS.ATTENTION) {
                 if (e.key === "x" || e.key === "X") {
                     e.preventDefault();
-                    const btn = document.getElementById("markPointBtn");
+                    const btn = document.getElementById("startPS");
                     if (btn) btn.click();
                 } else if (e.key === "Enter") {
-                    const skip = document.getElementById("submitNoPoint");
+                    const skip = document.getElementById("skipPS");
                     if (skip) {
                         e.preventDefault();
                         skip.click();
