@@ -137,24 +137,21 @@ function renderStepUI() {
 
     notes.innerHTML =
         step === STEPS.PREF
-            ? `<p id="instructions">Choose the text you prefer (ArrowLeft = Left, ArrowRight = Right, ArrowDown = Can't tell).</p>`
+            ? `<p id="instructions">Choose whether you prefer this answer (ArrowLeft = Prefer, ArrowDown = Can't tell).</p>`
             : step === STEPS.SURPRISE
-            ? `<p id="instructions">Rate how <em>surprising</em> the chosen answer felt (1 = not at all, 5 = very). Hotkeys: 1–5, Enter = Next.</p>`
-            : `<p id="instructions">Replay in pause-sampling on the <b>${
-                  chosen === "left" ? "Left" : "Right"
-              }</b> clip. Add <em>multiple</em> points at each stop, then press Space/Enter to continue.</p>`;
+            ? `<p id="instructions">Rate how <em>surprising</em> the answer felt (1 = not at all, 5 = very). Hotkeys: 1–5, Enter = Next.</p>`
+            : `<p id="instructions">Replay in pause-sampling on the clip. Add <em>multiple</em> points at each stop, then press Space/Enter to continue.</p>`;
 
     if (step === STEPS.PREF) {
         buttons.innerHTML = `
-      <button onclick="handleChoice('left')">Prefer Left</button>
-      <button onclick="handleChoice('right')">Prefer Right</button>
+      <button onclick="handleChoice('left')">Prefer This Answer</button>
       <button onclick="handleChoice('cant_tell')">Can't Tell</button>
     `;
     } else if (step === STEPS.SURPRISE) {
         buttons.innerHTML = `
       <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
         <div>
-          <div style="font-weight:600;margin-bottom:4px">Chosen answer</div>
+          <div style="font-weight:600;margin-bottom:4px">Answer</div>
           ${[1, 2, 3, 4, 5]
               .map((v) => `<button data-side="left" data-val="${v}" class="surBtn">${v}</button>`)
               .join(" ")}
@@ -193,11 +190,8 @@ function renderStepUI() {
 
         refreshNext();
     } else if (step === STEPS.ATTENTION) {
-        const side = staged?.preference;
-        const label = side === "left" ? "Left" : "Right";
-
         buttons.innerHTML = `
-      <button id="startPS">Start pause-sampling on ${label}</button>
+      <button id="startPS">Start pause-sampling</button>
       <button id="skipPS">Skip (no attention)</button>
     `;
 
@@ -205,7 +199,7 @@ function renderStepUI() {
             document.getElementById("startPS").disabled = true;
             document.getElementById("skipPS").disabled = true;
 
-            startPauseSampling(side, (attention) => {
+            startPauseSampling("left", (attention) => {
                 staged.attention = attention;
                 submitStagedAnnotation();
             });
@@ -293,39 +287,40 @@ function renderPair(pair) {
 
     const leftTextEl = document.getElementById("leftText");
     const rightTextEl = document.getElementById("rightText");
+
     if (leftTextEl) leftTextEl.textContent = pair.left_text || "—";
-    if (rightTextEl) rightTextEl.textContent = pair.right_text || "—";
+
+    // Optional: hide or clear right-side text if that element still exists in the HTML.
+    if (rightTextEl) {
+        rightTextEl.textContent = "";
+        rightTextEl.style.display = "none";
+    }
+
+    // Optional: hide common right-side containers if they still exist in the HTML.
+    const rightVideo = document.getElementById("rightVideo");
+    if (rightVideo) {
+        const rightWrap = rightVideo.parentElement;
+        try {
+            rightVideo.pause();
+            rightVideo.removeAttribute("src");
+            rightVideo.load();
+        } catch (_) {}
+        rightVideo.style.display = "none";
+        if (rightWrap) rightWrap.style.display = "none";
+    }
 
     const leftVideo = document.getElementById("leftVideo");
-    const rightVideo = document.getElementById("rightVideo");
 
-    if (!leftVideo || !rightVideo) {
+    if (!leftVideo) {
         resetStepperForPair();
         return;
     }
-
-    // keep right side visible if you want both placeholders on screen;
-    // hide only the right video element itself if needed in CSS/HTML.
-    const rightWrap = rightVideo.parentElement;
-    if (rightWrap) rightWrap.style.display = "block";
-
-    try {
-        rightVideo.pause();
-        rightVideo.removeAttribute("src");
-        rightVideo.load();
-    } catch (_) {}
 
     leftVideo.muted = true;
     leftVideo.setAttribute("muted", "");
     leftVideo.setAttribute("playsinline", "");
     leftVideo.autoplay = true;
     leftVideo.preload = "auto";
-
-    rightVideo.muted = true;
-    rightVideo.setAttribute("muted", "");
-    rightVideo.setAttribute("playsinline", "");
-    rightVideo.autoplay = true;
-    rightVideo.preload = "auto";
 
     leftVideo.src = pair.left_clip;
     leftVideo.load();
@@ -353,8 +348,6 @@ function renderPair(pair) {
 
     leftVideo.loop = true;
     leftVideo.controls = true;
-    rightVideo.loop = true;
-    rightVideo.controls = true;
 
     resetStepperForPair();
 }
@@ -371,7 +364,7 @@ function getNormalisedCoords(evt, el) {
 function showPointOverlay(side, onPick) {
     awaitingRegion = true;
 
-    const video = document.getElementById(side === "left" ? "leftVideo" : "rightVideo");
+    const video = document.getElementById("leftVideo");
     if (!video) {
         onPick(null);
         return;
@@ -501,7 +494,7 @@ function showPointOverlay(side, onPick) {
 function showMultiPointCollector(side, onDone) {
     awaitingRegion = true;
 
-    const video = document.getElementById(side === "left" ? "leftVideo" : "rightVideo");
+    const video = document.getElementById("leftVideo");
     if (!video) {
         onDone([]);
         return;
@@ -604,10 +597,9 @@ function showMultiPointCollector(side, onDone) {
 }
 
 function startPauseSampling(side, onDone) {
-    const chosenVideo = document.getElementById(side === "left" ? "leftVideo" : "rightVideo");
-    const otherVideo = document.getElementById(side === "left" ? "rightVideo" : "leftVideo");
+    const chosenVideo = document.getElementById("leftVideo");
 
-    if (!chosenVideo || !otherVideo) {
+    if (!chosenVideo) {
         onDone(null);
         return;
     }
@@ -617,7 +609,6 @@ function startPauseSampling(side, onDone) {
     const { signal } = psAbort;
     psActive = true;
 
-    otherVideo.pause();
     chosenVideo.loop = false;
     chosenVideo.controls = false;
     chosenVideo.currentTime = 0;
@@ -627,6 +618,7 @@ function startPauseSampling(side, onDone) {
         200,
         Number(new URLSearchParams(location.search).get("ps") || PAUSE_SAMPLE_MS)
     );
+
     const durMs = () => Math.floor((chosenVideo.duration || 0) * 1000);
     const breaks = [];
 
@@ -650,7 +642,7 @@ function startPauseSampling(side, onDone) {
 
         const attention = {
             type: "pause-sampling",
-            side,
+            side: "left",
             coordSpace: "normalised",
             samples,
             decisionAtMs: staged?.decisionAtMs ?? null,
@@ -664,7 +656,8 @@ function startPauseSampling(side, onDone) {
         if (!psActive || signal.aborted) return;
 
         chosenVideo.pause();
-        showMultiPointCollector(side, (points) => {
+
+        showMultiPointCollector("left", (points) => {
             if (signal.aborted) return;
 
             samples.push({ tsMs, points: points || [] });
@@ -710,8 +703,7 @@ function startPauseSampling(side, onDone) {
 
 function handleChoice(response) {
     const leftVideo = document.getElementById("leftVideo");
-    const rightVideo = document.getElementById("rightVideo");
-    const chosenVideo = response === "left" ? leftVideo : response === "right" ? rightVideo : null;
+    const chosenVideo = response === "left" ? leftVideo : null;
 
     pendingChoice = response;
     decisionAtMs = chosenVideo ? Math.round(chosenVideo.currentTime * 1000) : null;
@@ -819,9 +811,6 @@ async function submitStagedAnnotation() {
                 if (e.key === "ArrowLeft") {
                     e.preventDefault();
                     handleChoice("left");
-                } else if (e.key === "ArrowRight") {
-                    e.preventDefault();
-                    handleChoice("right");
                 } else if (e.key === "ArrowDown") {
                     e.preventDefault();
                     handleChoice("cant_tell");
