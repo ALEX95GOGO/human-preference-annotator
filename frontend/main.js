@@ -110,7 +110,7 @@ function resetStepperForPair() {
         preference: null,
         decisionAtMs: null,
         surpriseChoice: null,
-        surprise: { left: null, right: null }, // keep shape for backend compatibility
+        surprise: { left: null, right: null },
         attention: null,
         startedAt: Date.now(),
         stepT0: Date.now(),
@@ -137,26 +137,30 @@ function renderStepUI() {
 
     notes.innerHTML =
         step === STEPS.PREF
-            ? `<p id="instructions">Choose whether you prefer this answer (ArrowLeft = Prefer, ArrowDown = Can't tell).</p>`
+            ? `<p id="instructions">Choose the text you prefer (ArrowLeft = Left, ArrowRight = Right, ArrowDown = Can't tell).</p>`
             : step === STEPS.SURPRISE
-            ? `<p id="instructions">Rate how <em>surprising</em> the answer felt (1 = not at all, 5 = very). Hotkeys: 1–5, Enter = Next.</p>`
-            : `<p id="instructions">Replay in pause-sampling on the clip. Add <em>multiple</em> points at each stop, then press Space/Enter to continue.</p>`;
+            ? `<p id="instructions">Rate how <em>surprising</em> the chosen answer felt (1 = not at all, 5 = very). Hotkeys: 1–5, Enter = Next.</p>`
+            : `<p id="instructions">Replay the video in pause-sampling. Add <em>multiple</em> points at each stop, then press Space/Enter to continue.</p>`;
 
     if (step === STEPS.PREF) {
         buttons.innerHTML = `
-      <button onclick="handleChoice('left')">Prefer This Answer</button>
+      <button onclick="handleChoice('left')">Prefer Left</button>
+      <button onclick="handleChoice('right')">Prefer Right</button>
       <button onclick="handleChoice('cant_tell')">Can't Tell</button>
     `;
     } else if (step === STEPS.SURPRISE) {
+        const chosenLabel = chosen === "left" ? "Left answer" : "Right answer";
+        const chosenVal = chosen === "left" ? staged.surprise.left : staged.surprise.right;
+
         buttons.innerHTML = `
       <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
         <div>
-          <div style="font-weight:600;margin-bottom:4px">Answer</div>
+          <div style="font-weight:600;margin-bottom:4px">${chosenLabel}</div>
           ${[1, 2, 3, 4, 5]
-              .map((v) => `<button data-side="left" data-val="${v}" class="surBtn">${v}</button>`)
+              .map((v) => `<button data-val="${v}" class="surBtn">${v}</button>`)
               .join(" ")}
-          <span id="leftSurVal" style="margin-left:8px; margin-right:18px;">
-            ${staged.surprise.left ?? "—"}
+          <span id="chosenSurVal" style="margin-left:8px; margin-right:18px;">
+            ${chosenVal ?? "—"}
           </span>
         </div>
 
@@ -166,32 +170,43 @@ function renderStepUI() {
 
         const nextBtn = buttons.querySelector("#surpriseNext");
 
+        const getChosenSurprise = () =>
+            staged.preference === "left" ? staged.surprise.left : staged.surprise.right;
+
+        const setChosenSurprise = (val) => {
+            if (staged.preference === "left") {
+                staged.surprise.left = val;
+            } else if (staged.preference === "right") {
+                staged.surprise.right = val;
+            }
+        };
+
         const refreshNext = () => {
-            nextBtn.disabled = !staged.surprise.left;
+            nextBtn.disabled = !getChosenSurprise();
         };
 
         buttons.querySelectorAll(".surBtn").forEach((b) => {
             b.addEventListener("click", () => {
                 const val = Number(b.dataset.val);
-                staged.surprise.left = val;
+                setChosenSurprise(val);
 
-                const leftVal = document.getElementById("leftSurVal");
-                if (leftVal) leftVal.textContent = val;
+                const chosenValEl = document.getElementById("chosenSurVal");
+                if (chosenValEl) chosenValEl.textContent = val;
 
                 refreshNext();
             });
         });
 
         nextBtn.addEventListener("click", () => {
-            if (!staged.surprise.left) return;
-            staged.surpriseChoice = "left";
+            if (!getChosenSurprise()) return;
+            staged.surpriseChoice = staged.preference;
             markStepAdvance(STEPS.ATTENTION);
         });
 
         refreshNext();
     } else if (step === STEPS.ATTENTION) {
         buttons.innerHTML = `
-      <button id="startPS">Start pause-sampling</button>
+      <button id="startPS">Start pause-sampling on video</button>
       <button id="skipPS">Skip (no attention)</button>
     `;
 
@@ -199,7 +214,7 @@ function renderStepUI() {
             document.getElementById("startPS").disabled = true;
             document.getElementById("skipPS").disabled = true;
 
-            startPauseSampling("left", (attention) => {
+            startPauseSampling(staged.preference, (attention) => {
                 staged.attention = attention;
                 submitStagedAnnotation();
             });
@@ -264,6 +279,50 @@ function showStartOverlay(onStart) {
     window.addEventListener("keydown", onKey, { once: true });
 }
 
+function shrinkLeftVideoTo90Percent(leftVideo) {
+    if (!leftVideo) return;
+
+    leftVideo.style.width = "90%";
+    leftVideo.style.maxWidth = "90%";
+    leftVideo.style.height = "auto";
+    leftVideo.style.display = "block";
+    leftVideo.style.marginLeft = "auto";
+    leftVideo.style.marginRight = "auto";
+
+    const wrap = leftVideo.parentElement;
+    if (wrap) {
+        wrap.style.display = "flex";
+        wrap.style.flexDirection = "column";
+        wrap.style.alignItems = "center";
+    }
+}
+
+function hideRightVideoOnly() {
+    const rightVideo = document.getElementById("rightVideo");
+
+    if (!rightVideo) return;
+
+    try {
+        rightVideo.pause();
+        rightVideo.removeAttribute("src");
+        rightVideo.load();
+    } catch (_) {}
+
+    rightVideo.style.display = "none";
+
+    const rightWrap = rightVideo.parentElement;
+    if (rightWrap) {
+        rightWrap.style.display = "none";
+    }
+
+    const rightProgress = document.getElementById("rightProgress");
+    if (rightProgress) {
+        const progressWrap = rightProgress.parentElement;
+        if (progressWrap) progressWrap.style.display = "none";
+        rightProgress.style.display = "none";
+    }
+}
+
 function renderPair(pair) {
     currentPair = pair;
     annotatorId = pair.progress?.annotatorId || "anonymous";
@@ -288,26 +347,17 @@ function renderPair(pair) {
     const leftTextEl = document.getElementById("leftText");
     const rightTextEl = document.getElementById("rightText");
 
-    if (leftTextEl) leftTextEl.textContent = pair.left_text || "—";
+    if (leftTextEl) {
+        leftTextEl.textContent = pair.left_text || "—";
+        leftTextEl.style.display = "";
+    }
 
-    // Optional: hide or clear right-side text if that element still exists in the HTML.
     if (rightTextEl) {
-        rightTextEl.textContent = "";
-        rightTextEl.style.display = "none";
+        rightTextEl.textContent = pair.right_text || "—";
+        rightTextEl.style.display = "";
     }
 
-    // Optional: hide common right-side containers if they still exist in the HTML.
-    const rightVideo = document.getElementById("rightVideo");
-    if (rightVideo) {
-        const rightWrap = rightVideo.parentElement;
-        try {
-            rightVideo.pause();
-            rightVideo.removeAttribute("src");
-            rightVideo.load();
-        } catch (_) {}
-        rightVideo.style.display = "none";
-        if (rightWrap) rightWrap.style.display = "none";
-    }
+    hideRightVideoOnly();
 
     const leftVideo = document.getElementById("leftVideo");
 
@@ -315,6 +365,8 @@ function renderPair(pair) {
         resetStepperForPair();
         return;
     }
+
+    shrinkLeftVideoTo90Percent(leftVideo);
 
     leftVideo.muted = true;
     leftVideo.setAttribute("muted", "");
@@ -642,7 +694,8 @@ function startPauseSampling(side, onDone) {
 
         const attention = {
             type: "pause-sampling",
-            side: "left",
+            side,
+            video: "leftVideo",
             coordSpace: "normalised",
             samples,
             decisionAtMs: staged?.decisionAtMs ?? null,
@@ -657,7 +710,7 @@ function startPauseSampling(side, onDone) {
 
         chosenVideo.pause();
 
-        showMultiPointCollector("left", (points) => {
+        showMultiPointCollector(side, (points) => {
             if (signal.aborted) return;
 
             samples.push({ tsMs, points: points || [] });
@@ -703,10 +756,9 @@ function startPauseSampling(side, onDone) {
 
 function handleChoice(response) {
     const leftVideo = document.getElementById("leftVideo");
-    const chosenVideo = response === "left" ? leftVideo : null;
 
     pendingChoice = response;
-    decisionAtMs = chosenVideo ? Math.round(chosenVideo.currentTime * 1000) : null;
+    decisionAtMs = leftVideo ? Math.round(leftVideo.currentTime * 1000) : null;
 
     if (!staged) resetStepperForPair();
 
@@ -811,6 +863,9 @@ async function submitStagedAnnotation() {
                 if (e.key === "ArrowLeft") {
                     e.preventDefault();
                     handleChoice("left");
+                } else if (e.key === "ArrowRight") {
+                    e.preventDefault();
+                    handleChoice("right");
                 } else if (e.key === "ArrowDown") {
                     e.preventDefault();
                     handleChoice("cant_tell");
@@ -818,19 +873,30 @@ async function submitStagedAnnotation() {
             } else if (step === STEPS.SURPRISE) {
                 const oneMap = { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5 };
 
+                const setChosenSurprise = (val) => {
+                    if (staged.preference === "left") {
+                        staged.surprise.left = val;
+                    } else if (staged.preference === "right") {
+                        staged.surprise.right = val;
+                    }
+                };
+
+                const getChosenSurprise = () =>
+                    staged.preference === "left" ? staged.surprise.left : staged.surprise.right;
+
                 if (oneMap[e.key] != null) {
-                    staged.surprise.left = oneMap[e.key];
-                    const s = document.getElementById("leftSurVal");
-                    if (s) s.textContent = staged.surprise.left;
+                    setChosenSurprise(oneMap[e.key]);
+                    const s = document.getElementById("chosenSurVal");
+                    if (s) s.textContent = getChosenSurprise();
                 }
 
                 const nextBtn = document.getElementById("surpriseNext");
-                const canNext = !!staged.surprise.left;
+                const canNext = !!getChosenSurprise();
                 if (nextBtn) nextBtn.disabled = !canNext;
 
                 if (e.key === "Enter" && canNext) {
                     e.preventDefault();
-                    staged.surpriseChoice = "left";
+                    staged.surpriseChoice = staged.preference;
                     markStepAdvance(STEPS.ATTENTION);
                 }
             } else if (step === STEPS.ATTENTION) {
