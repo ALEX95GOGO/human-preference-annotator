@@ -119,25 +119,29 @@ video {
   /* min-height: 100vh; */
 }
 
-#videos {
-  height: calc(100vh - var(--header) - var(--footer) - var(--text-height) + 20px);
+#mainContent {
+  height: calc(100vh - var(--header) - var(--footer));
+  padding-top: var(--header);
+  padding-bottom: var(--footer);
   display: flex;
-  flex-direction: row; /* left/right layout */
-  gap: var(--gap);
+  flex-direction: row;
+  gap: 16px;
   max-width: 1280px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
-#videoColumn {
+#videos {
   flex: 3;
+  height: 100%;
   display: flex;
-  flex-direction: column; /* videos stacked up/down */
+  flex-direction: column;
   gap: var(--gap);
   min-width: 0;
 }
 
-#videoColumn > .video-container {
-  height: calc((100% - var(--gap)) / 2);
+#videos > .video-container {
+  flex: 1;
   min-height: 0;
   min-width: 0;
   display: flex;
@@ -147,7 +151,7 @@ video {
   position: relative;
 }
 
-#videoColumn > .video-container video {
+#videos > .video-container video {
   max-height: 100%;
   max-width: 100%;
   height: 100%;
@@ -159,9 +163,54 @@ video {
 
 #rlhfPlaceholders {
   flex: 1;
+  min-width: 320px;
+  max-width: 420px;
+  height: 100%;
   display: flex;
-  flex-direction: column; /* RLHF boxes up/down */
-  gap: var(--gap);
   align-items: stretch;
-  min-width: 260px;
+}
+
+.rlhf-box {
+  flex: 1;
+  min-height: 200px;
+  border: 2px dashed #98a2b3;
+  border-radius: 12px;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.rlhf-body {
+  flex: 1;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  font: inherit;
+  color: inherit;
+}
+
+.choice-block {
+  text-align: center;
+}
+
+.choice-title {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+}
+
+.choice-text {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+}
+
+#instructions {
+  color: #555;
+  margin: 4px 0;
+  font-size: 12px;
+  text-align: center;
 }
