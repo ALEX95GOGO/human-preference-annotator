@@ -116,27 +116,25 @@ video {
 #app {
   padding-top: var(--header);
   padding-bottom: var(--footer);
-  /* min-height: 100vh; */
-}
-
-#mainContent {
   height: calc(100vh - var(--header) - var(--footer));
-  padding-top: var(--header);
-  padding-bottom: var(--footer);
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
   max-width: 1280px;
   margin: 0 auto;
   box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;   /* video left, text box right */
+  gap: 16px;
+  align-items: stretch;
 }
 
 #videos {
-  flex: 3;
+  flex: 1;
   height: 100%;
   display: flex;
   flex-direction: column;
   gap: var(--gap);
+  max-width: none;
+  margin: 0;
   min-width: 0;
 }
 
@@ -162,17 +160,19 @@ video {
 }
 
 #rlhfPlaceholders {
-  flex: 1;
+  width: 360px;
   min-width: 320px;
   max-width: 420px;
   height: 100%;
+
   display: flex;
+  flex-direction: column;
   align-items: stretch;
 }
 
 .rlhf-box {
   flex: 1;
-  min-height: 200px;
+  min-height: 0;
   border: 2px dashed #98a2b3;
   border-radius: 12px;
   background: #f8fafc;
@@ -183,13 +183,12 @@ video {
 
 .rlhf-body {
   flex: 1;
-  padding: 18px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 18px;
-  font: inherit;
-  color: inherit;
+  padding: 16px;
+  font: 600 18px system-ui;
+  color: #475467;
 }
 
 .choice-block {
