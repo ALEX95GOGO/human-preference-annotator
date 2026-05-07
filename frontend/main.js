@@ -14,7 +14,7 @@ if (!token) {
 localStorage.setItem("token", token);
 
 const ATTN_TIMEOUT = 2000; // 10s
-const PAUSE_SAMPLE_MS = 900;
+const PAUSE_SAMPLE_MS = 500;
 
 function logout() {
     localStorage.removeItem("token");
