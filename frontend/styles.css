@@ -121,7 +121,7 @@ video {
   padding-top: var(--header);
   padding-bottom: var(--footer);
   height: 100vh;
-  max-width: 1600px;
+  max-width: 1920px;
   margin: 0 auto;
   box-sizing: border-box;
 
