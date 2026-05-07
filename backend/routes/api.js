@@ -9,7 +9,7 @@ const clipPairsPath = path.join(__dirname, "../data/clip_pairs.json");
 const tokenPath = path.join(__dirname, "../data/tokens.json");
 const goldPairsPath = path.join(__dirname, "../data/gold_pairs.json");
 
-const GOLD_RATE = 0.07; // 7% of trials are gold
+const GOLD_RATE = 0.0; // 7% of trials are gold
 const REPEAT_GAP = 10; // schedule a repeat 10 trials after first seen
 const REPEAT_RATE = 0.05; // enqueue repeats for 5% of seen items
 const MAX_REPEAT_QUEUE = 5; // cap queue size
