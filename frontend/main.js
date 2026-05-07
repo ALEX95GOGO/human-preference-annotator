@@ -13,7 +13,7 @@ if (!token) {
 
 localStorage.setItem("token", token);
 
-const ATTN_TIMEOUT = 5000; // 10s
+const ATTN_TIMEOUT = 1000; // 10s
 const PAUSE_SAMPLE_MS = 900;
 
 function logout() {
