@@ -150,7 +150,7 @@ function renderStepUI() {
       <button onclick="handleChoice('cant_tell')">Can't Tell</button>
     `;
     } else if (step === STEPS.SURPRISE) {
-        const chosenLabel = chosen === "left" ? "Up answer" : "Down answer";
+        const chosenLabel = chosen === "left" ? "Surprise Level" : "Surprise Level";
         const chosenVal = chosen === "left" ? staged.surprise.left : staged.surprise.right;
 
         buttons.innerHTML = `
