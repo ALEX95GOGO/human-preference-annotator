@@ -207,23 +207,20 @@ function renderStepUI() {
         refreshNext();
     } else if (step === STEPS.ATTENTION) {
         buttons.innerHTML = `
-      <button id="startPS">Start pause-sampling on video</button>
-      <button id="skipPS">Skip (no attention)</button>
+      <div id="attentionStatus" style="font:600 13px system-ui; padding:8px 0;">
+        Attention annotation is required. Pause-sampling will start automatically.
+      </div>
     `;
 
-        document.getElementById("startPS").addEventListener("click", () => {
-            document.getElementById("startPS").disabled = true;
-            document.getElementById("skipPS").disabled = true;
+        // Start attention collection automatically so there is no separate
+        // attention/skip button and attention cannot be skipped.
+        queueMicrotask(() => {
+            if (step !== STEPS.ATTENTION || !staged || psActive) return;
 
             startPauseSampling(staged.preference, (attention) => {
                 staged.attention = attention;
                 submitStagedAnnotation();
             });
-        });
-
-        document.getElementById("skipPS").addEventListener("click", () => {
-            staged.attention = null;
-            submitStagedAnnotation();
         });
     }
 }
@@ -664,7 +661,6 @@ function startPauseSampling(side, onDone) {
 
     chosenVideo.loop = false;
     chosenVideo.controls = false;
-    chosenVideo.currentTime = 0;
     chosenVideo.muted = true;
 
     const stepMs = Math.max(
@@ -672,16 +668,32 @@ function startPauseSampling(side, onDone) {
         Number(new URLSearchParams(location.search).get("ps") || PAUSE_SAMPLE_MS)
     );
 
-    const durMs = () => Math.floor((chosenVideo.duration || 0) * 1000);
-    const breaks = [];
-
-    for (let t = stepMs; t < durMs() + 50; t += stepMs) {
-        breaks.push(t);
-    }
-
     const samples = [];
+    let breaks = [];
     let idx = 0;
     let armed = true;
+    let finishing = false;
+
+    const getDurationMs = () => Math.round((chosenVideo.duration || 0) * 1000);
+
+    const buildBreaks = () => {
+        const durationMs = getDurationMs();
+        const out = [];
+
+        if (!durationMs) return out;
+
+        // Sample every stepMs, but never create a timestamp past the end.
+        // The final timestamp is always exactly the video duration.
+        for (let t = stepMs; t < durationMs; t += stepMs) {
+            out.push(t);
+        }
+
+        if (!out.length || out[out.length - 1] !== durationMs) {
+            out.push(durationMs);
+        }
+
+        return out;
+    };
 
     const ensurePlaying = async () => {
         try {
@@ -689,8 +701,39 @@ function startPauseSampling(side, onDone) {
         } catch (_) {}
     };
 
+    const seekToLastFrame = async () => {
+        const duration = chosenVideo.duration || 0;
+        if (!duration) return;
+
+        chosenVideo.pause();
+
+        // Seek to the exact media duration so the browser displays the terminal frame.
+        // Some browsers fire ended immediately here; finishing guards prevent double submit.
+        if (Math.abs(chosenVideo.currentTime - duration) < 0.001) return;
+
+        await new Promise((resolve) => {
+            const done = () => {
+                chosenVideo.removeEventListener("seeked", done);
+                resolve();
+            };
+
+            chosenVideo.addEventListener("seeked", done, { once: true });
+
+            try {
+                chosenVideo.currentTime = duration;
+            } catch (_) {
+                chosenVideo.removeEventListener("seeked", done);
+                resolve();
+            }
+
+            // Safety net for browsers that do not emit seeked at duration.
+            setTimeout(done, 250);
+        });
+    };
+
     const finish = () => {
-        if (!psActive) return;
+        if (!psActive || finishing) return;
+        finishing = true;
         psActive = false;
 
         const attention = {
@@ -706,24 +749,28 @@ function startPauseSampling(side, onDone) {
         onDone(attention);
     };
 
-    const pauseAndCollect = (tsMs) => {
-        if (!psActive || signal.aborted) return;
+    const pauseAndCollect = async (tsMs) => {
+        if (!psActive || signal.aborted || finishing) return;
+
+        const durationMs = getDurationMs();
+        const isFinalSample = durationMs > 0 && tsMs === durationMs;
 
         chosenVideo.pause();
 
-        showMultiPointCollector(side, (points) => {
-            if (signal.aborted) return;
+        if (isFinalSample) {
+            await seekToLastFrame();
+        }
 
-            samples.push({ tsMs, points: points || [] });
+        if (!psActive || signal.aborted || finishing) return;
+
+        showMultiPointCollector(side, (points) => {
+            if (signal.aborted || finishing) return;
+
+            samples.push({ tsMs, points: points || [], isLastFrame: isFinalSample });
             idx += 1;
 
             if (idx >= breaks.length) {
-                if (chosenVideo.ended || chosenVideo.duration - chosenVideo.currentTime < 0.05) {
-                    finish();
-                } else {
-                    armed = false;
-                    ensurePlaying();
-                }
+                finish();
             } else {
                 armed = true;
                 ensurePlaying();
@@ -732,9 +779,9 @@ function startPauseSampling(side, onDone) {
     };
 
     const onTime = () => {
-        if (!psActive || signal.aborted || !armed || idx >= breaks.length) return;
+        if (!psActive || signal.aborted || !armed || idx >= breaks.length || finishing) return;
 
-        const nowMs = Math.floor(chosenVideo.currentTime * 1000);
+        const nowMs = Math.round(chosenVideo.currentTime * 1000);
         const target = breaks[idx];
 
         if (nowMs >= target) {
@@ -743,16 +790,46 @@ function startPauseSampling(side, onDone) {
         }
     };
 
+    const start = async () => {
+        if (!breaks.length) breaks = buildBreaks();
+
+        if (!breaks.length) {
+            finish();
+            return;
+        }
+
+        try {
+            chosenVideo.currentTime = 0;
+        } catch (_) {}
+
+        await ensurePlaying();
+    };
+
     chosenVideo.addEventListener("timeupdate", onTime, { signal });
     chosenVideo.addEventListener(
         "ended",
         () => {
-            if (!signal.aborted) finish();
+            if (signal.aborted || finishing) return;
+
+            const durationMs = getDurationMs();
+            const finalSampleAlreadyQueued = idx < breaks.length && breaks[idx] === durationMs;
+
+            if (finalSampleAlreadyQueued) {
+                armed = false;
+                pauseAndCollect(durationMs);
+            } else {
+                finish();
+            }
         },
         { signal }
     );
 
-    ensurePlaying();
+    if (Number.isFinite(chosenVideo.duration) && chosenVideo.duration > 0) {
+        start();
+    } else {
+        chosenVideo.addEventListener("loadedmetadata", start, { once: true, signal });
+        chosenVideo.load();
+    }
 }
 
 function handleChoice(response) {
@@ -768,8 +845,8 @@ function handleChoice(response) {
 
     if (response === "cant_tell") {
         staged.surprise = { left: null, right: null };
-        staged.attention = null;
-        submitStagedAnnotation();
+        staged.surpriseChoice = null;
+        markStepAdvance(STEPS.ATTENTION);
         return;
     }
 
@@ -901,17 +978,8 @@ async function submitStagedAnnotation() {
                     markStepAdvance(STEPS.ATTENTION);
                 }
             } else if (step === STEPS.ATTENTION) {
-                if (e.key === "x" || e.key === "X") {
-                    e.preventDefault();
-                    const btn = document.getElementById("startPS");
-                    if (btn) btn.click();
-                } else if (e.key === "Enter") {
-                    const skip = document.getElementById("skipPS");
-                    if (skip) {
-                        e.preventDefault();
-                        skip.click();
-                    }
-                }
+                // Attention annotation is required and starts automatically.
+                // Space/Enter are handled by the point collector while awaitingRegion is true.
             }
         },
         { passive: false }
