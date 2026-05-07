@@ -145,12 +145,12 @@ function renderStepUI() {
 
     if (step === STEPS.PREF) {
         buttons.innerHTML = `
-      <button onclick="handleChoice('left')">Prefer Left</button>
-      <button onclick="handleChoice('right')">Prefer Right</button>
+      <button onclick="handleChoice('left')">Prefer Up</button>
+      <button onclick="handleChoice('right')">Prefer Down</button>
       <button onclick="handleChoice('cant_tell')">Can't Tell</button>
     `;
     } else if (step === STEPS.SURPRISE) {
-        const chosenLabel = chosen === "left" ? "Left answer" : "Right answer";
+        const chosenLabel = chosen === "left" ? "Up answer" : "Down answer";
         const chosenVal = chosen === "left" ? staged.surprise.left : staged.surprise.right;
 
         buttons.innerHTML = `
