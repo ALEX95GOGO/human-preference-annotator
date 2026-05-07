@@ -374,6 +374,7 @@ function renderPair(pair) {
 
     leftVideo.src = pair.left_clip;
     leftVideo.load();
+    leftVideo.playbackRate = 0.5;
 
     const tryAutoplay = async () => {
         try {
