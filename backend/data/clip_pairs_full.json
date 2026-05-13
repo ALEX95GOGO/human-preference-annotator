@@ -1,5 +1,613 @@
 [
   {
+    "pair_id": "000001",
+    "left_clip": "videos/front_cam_batch1/000000_n008-2018-09-18-13-10-39-0400__CAM_FRONT__1537291010612404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000000_n008-2018-09-18-13-10-39-0400__CAM_FRONT__1537291010612404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving with normal speed.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000002",
+    "left_clip": "videos/front_cam_batch1/000001_n008-2018-09-18-13-10-39-0400__CAM_FRONT__1537291002262404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000001_n008-2018-09-18-13-10-39-0400__CAM_FRONT__1537291002262404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000003",
+    "left_clip": "videos/front_cam_batch1/000002_n008-2018-09-18-13-10-39-0400__CAM_FRONT__1537291005162404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000002_n008-2018-09-18-13-10-39-0400__CAM_FRONT__1537291005162404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000004",
+    "left_clip": "videos/front_cam_batch1/000003_n008-2018-09-18-13-10-39-0400__CAM_FRONT__1537291013612404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000003_n008-2018-09-18-13-10-39-0400__CAM_FRONT__1537291013612404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "right_text": "The ego vehicle is going straight. There is no safety issue.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000010",
+    "left_clip": "videos/front_cam_batch1/000009_n008-2018-07-27-12-07-38-0400__CAM_FRONT__1532708670912404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000009_n008-2018-07-27-12-07-38-0400__CAM_FRONT__1532708670912404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "right_text": "The ego vehicle is slightly steering to the left. The reason is to avoid a collision.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000011",
+    "left_clip": "videos/front_cam_batch1/000010_n008-2018-07-27-12-07-38-0400__CAM_FRONT__1532708669412404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000010_n008-2018-07-27-12-07-38-0400__CAM_FRONT__1532708669412404_prev10.mp4",
+    "left_text": "Brake suddenly, accelerate, and go ahead are dangerous actions to take for the ego vehicle.",
+    "right_text": "Accelerate and go ahead, brake suddenly.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000012",
+    "left_clip": "videos/front_cam_batch1/000011_n008-2018-07-27-12-07-38-0400__CAM_FRONT__1532708675412404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000011_n008-2018-07-27-12-07-38-0400__CAM_FRONT__1532708675412404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is not moving. The ego vehicle is turning left.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000013",
+    "left_clip": "videos/front_cam_batch1/000012_n008-2018-07-27-12-07-38-0400__CAM_FRONT__1532708672412404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000012_n008-2018-07-27-12-07-38-0400__CAM_FRONT__1532708672412404_prev10.mp4",
+    "left_text": "Accelerate and go ahead, brake suddenly.",
+    "right_text": "Accelerate and go ahead, and back up.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000014",
+    "left_clip": "videos/front_cam_batch1/000013_n008-2018-07-27-12-07-38-0400__CAM_FRONT__1532708677912404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000013_n008-2018-07-27-12-07-38-0400__CAM_FRONT__1532708677912404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is not moving. The ego vehicle is moving slowly.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000015",
+    "left_clip": "videos/front_cam_batch1/000014_n008-2018-07-27-12-07-38-0400__CAM_FRONT__1532708680862404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000014_n008-2018-07-27-12-07-38-0400__CAM_FRONT__1532708680862404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. Therefore, the ego vehicle will continue going straight.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000016",
+    "left_clip": "videos/front_cam_batch1/000015_n008-2018-07-27-12-07-38-0400__CAM_FRONT__1532708676412404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000015_n008-2018-07-27-12-07-38-0400__CAM_FRONT__1532708676412404_prev10.mp4",
+    "left_text": "Accelerate and go ahead, turn left, and turn right.",
+    "right_text": "Accelerate and go ahead, and back up.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000017",
+    "left_clip": "videos/front_cam_batch1/000016_n008-2018-07-27-12-07-38-0400__CAM_FRONT__1532708667912404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000016_n008-2018-07-27-12-07-38-0400__CAM_FRONT__1532708667912404_prev10.mp4",
+    "left_text": "The traffic flow on the street in this scene is high.",
+    "right_text": "The scene is informative, the road conditions are complex, and deserve extra attention.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000024",
+    "left_clip": "videos/front_cam_batch1/000023_n008-2018-09-18-12-07-26-0400__CAM_FRONT__1537287302412404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000023_n008-2018-09-18-12-07-26-0400__CAM_FRONT__1537287302412404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000025",
+    "left_clip": "videos/front_cam_batch1/000024_n008-2018-09-18-12-07-26-0400__CAM_FRONT__1537287304412404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000024_n008-2018-09-18-12-07-26-0400__CAM_FRONT__1537287304412404_prev10.mp4",
+    "left_text": "Slightly offset to the right, change to the right lane, brake suddenly, and back up are dangerous actions to take for the ego vehicle. The reason is to avoid a collision.",
+    "right_text": "Back up, turn left.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000026",
+    "left_clip": "videos/front_cam_batch1/000025_n008-2018-09-18-12-07-26-0400__CAM_FRONT__1537287287512404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000025_n008-2018-09-18-12-07-26-0400__CAM_FRONT__1537287287512404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving with normal speed.",
+    "right_text": "The ego vehicle is steering to the right. The ego vehicle is driving with normal speed.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000027",
+    "left_clip": "videos/front_cam_batch1/000026_n008-2018-09-18-12-07-26-0400__CAM_FRONT__1537287293362404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000026_n008-2018-09-18-12-07-26-0400__CAM_FRONT__1537287293362404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. There is no reason to turn left, turn right, or back up.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000036",
+    "left_clip": "videos/front_cam_batch1/000035_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535574108912404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000035_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535574108912404_prev10.mp4",
+    "left_text": "The ego vehicle is slightly steering to the right. The ego vehicle is driving with normal speed.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000037",
+    "left_clip": "videos/front_cam_batch1/000036_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535574095912404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000036_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535574095912404_prev10.mp4",
+    "left_text": "The ego vehicle is steering to the right. The ego vehicle is driving with normal speed.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000038",
+    "left_clip": "videos/front_cam_batch1/000037_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535574111412404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000037_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535574111412404_prev10.mp4",
+    "left_text": "The ego vehicle is slightly steering to the left. The reason is that there is no traffic cone to the right front of the ego vehicle.",
+    "right_text": "The ego vehicle is slightly steering to the right. The ego vehicle is driving with normal speed.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000039",
+    "left_clip": "videos/front_cam_batch1/000038_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535574098912404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000038_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535574098912404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "right_text": "The ego vehicle is going straight. Therefore, the ego vehicle is driving straight.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000040",
+    "left_clip": "videos/front_cam_batch1/000039_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535574103412404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000039_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535574103412404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is slightly steering to the right. The ego vehicle is driving fast.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000041",
+    "left_clip": "videos/front_cam_batch1/000040_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535574094912404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000040_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535574094912404_prev10.mp4",
+    "left_text": "The ego vehicle is steering to the right. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is slightly steering to the left. The reason is that there is no safety issue.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000048",
+    "left_clip": "videos/front_cam_batch1/000047_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573258612404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000047_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573258612404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000049",
+    "left_clip": "videos/front_cam_batch1/000048_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573262112404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000048_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573262112404_prev10.mp4",
+    "left_text": "The scene is very informative, the road conditions are complex, and it is worth paying extra attention to.",
+    "right_text": "There are many vehicles in this scene, worth paying extra attention to.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000050",
+    "left_clip": "videos/front_cam_batch1/000049_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573249112404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000049_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573249112404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving with normal speed.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000051",
+    "left_clip": "videos/front_cam_batch1/000050_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573266662423_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000050_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573266662423_prev10.mp4",
+    "left_text": "Turning left, turning right, backing up, accelerating, and going ahead are dangerous actions to take for the ego vehicle in this scenario.",
+    "right_text": "Keep going at the same speed, accelerate and go ahead, decelerate gradually without braking, slightly offset to the left, slightly offset to the right, turn left, turn right, back up, change to the left lane, change to the right lane, slightly offset to the front, slightly offset to the back, brake gently to a stop.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000052",
+    "left_clip": "videos/front_cam_batch1/000051_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573253662404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000051_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573253662404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000053",
+    "left_clip": "videos/front_cam_batch1/000052_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573264612404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000052_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573264612404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is not moving. The ego vehicle is slightly offset to the left.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000054",
+    "left_clip": "videos/front_cam_batch1/000053_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573251112404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000053_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573251112404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000072",
+    "left_clip": "videos/front_cam_batch1/000071_n008-2018-08-06-15-06-32-0400__CAM_FRONT__1533582505112404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000071_n008-2018-08-06-15-06-32-0400__CAM_FRONT__1533582505112404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving very fast.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000073",
+    "left_clip": "videos/front_cam_batch1/000072_n008-2018-08-06-15-06-32-0400__CAM_FRONT__1533582489662404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000072_n008-2018-08-06-15-06-32-0400__CAM_FRONT__1533582489662404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "right_text": "The ego vehicle is steering to the right. The ego vehicle is driving slowly.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000074",
+    "left_clip": "videos/front_cam_batch1/000073_n008-2018-08-06-15-06-32-0400__CAM_FRONT__1533582498612404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000073_n008-2018-08-06-15-06-32-0400__CAM_FRONT__1533582498612404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is steering to the left. The ego vehicle is driving with normal speed.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000075",
+    "left_clip": "videos/front_cam_batch1/000074_n008-2018-08-06-15-06-32-0400__CAM_FRONT__1533582493162404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000074_n008-2018-08-06-15-06-32-0400__CAM_FRONT__1533582493162404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000076",
+    "left_clip": "videos/front_cam_batch1/000075_n008-2018-08-06-15-06-32-0400__CAM_FRONT__1533582496162404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000075_n008-2018-08-06-15-06-32-0400__CAM_FRONT__1533582496162404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "right_text": "The ego vehicle is steering to the left. The ego vehicle is driving slowly.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000077",
+    "left_clip": "videos/front_cam_batch1/000076_n008-2018-08-06-15-06-32-0400__CAM_FRONT__1533582506112404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000076_n008-2018-08-06-15-06-32-0400__CAM_FRONT__1533582506112404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving very fast.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000078",
+    "left_clip": "videos/front_cam_batch1/000077_n008-2018-08-06-15-06-32-0400__CAM_FRONT__1533582501612404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000077_n008-2018-08-06-15-06-32-0400__CAM_FRONT__1533582501612404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving with normal speed.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000079",
+    "left_clip": "videos/front_cam_batch1/000078_n008-2018-08-28-16-16-48-0400__CAM_FRONT__1535488040612404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000078_n008-2018-08-28-16-16-48-0400__CAM_FRONT__1535488040612404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving with normal speed.",
+    "right_text": "The ego vehicle is going straight. Therefore, the ego vehicle will maintain a constant speed.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000080",
+    "left_clip": "videos/front_cam_batch1/000079_n008-2018-08-28-16-16-48-0400__CAM_FRONT__1535488027162404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000079_n008-2018-08-28-16-16-48-0400__CAM_FRONT__1535488027162404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. There is no reason to turn left.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000081",
+    "left_clip": "videos/front_cam_batch1/000080_n008-2018-08-28-16-16-48-0400__CAM_FRONT__1535488023662416_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000080_n008-2018-08-28-16-16-48-0400__CAM_FRONT__1535488023662416_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000082",
+    "left_clip": "videos/front_cam_batch1/000081_n008-2018-08-28-16-16-48-0400__CAM_FRONT__1535488034162404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000081_n008-2018-08-28-16-16-48-0400__CAM_FRONT__1535488034162404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving very fast.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000083",
+    "left_clip": "videos/front_cam_batch1/000082_n008-2018-09-18-13-41-50-0400__CAM_FRONT__1537293224262404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000082_n008-2018-09-18-13-41-50-0400__CAM_FRONT__1537293224262404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "right_text": "The ego vehicle is slightly steering to the left. The ego vehicle is driving fast.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000084",
+    "left_clip": "videos/front_cam_batch1/000083_n008-2018-09-18-13-41-50-0400__CAM_FRONT__1537293229362404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000083_n008-2018-09-18-13-41-50-0400__CAM_FRONT__1537293229362404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000085",
+    "left_clip": "videos/front_cam_batch1/000084_n008-2018-09-18-13-41-50-0400__CAM_FRONT__1537293226262404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000084_n008-2018-09-18-13-41-50-0400__CAM_FRONT__1537293226262404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "right_text": "The ego vehicle is slightly steering to the left. The ego vehicle is driving fast.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000086",
+    "left_clip": "videos/front_cam_batch1/000085_n008-2018-09-18-13-41-50-0400__CAM_FRONT__1537293217762404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000085_n008-2018-09-18-13-41-50-0400__CAM_FRONT__1537293217762404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving with normal speed.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000087",
+    "left_clip": "videos/front_cam_batch1/000086_n008-2018-09-18-13-41-50-0400__CAM_FRONT__1537293219762404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000086_n008-2018-09-18-13-41-50-0400__CAM_FRONT__1537293219762404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000088",
+    "left_clip": "videos/front_cam_batch1/000087_n008-2018-09-18-13-41-50-0400__CAM_FRONT__1537293221762404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000087_n008-2018-09-18-13-41-50-0400__CAM_FRONT__1537293221762404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000089",
+    "left_clip": "videos/front_cam_batch1/000088_n008-2018-09-18-13-41-50-0400__CAM_FRONT__1537293231412404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000088_n008-2018-09-18-13-41-50-0400__CAM_FRONT__1537293231412404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving with normal speed.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000090",
+    "left_clip": "videos/front_cam_batch1/000089_n008-2018-09-18-13-41-50-0400__CAM_FRONT__1537293227262404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000089_n008-2018-09-18-13-41-50-0400__CAM_FRONT__1537293227262404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. Therefore, the ego vehicle is not going to turn left.",
+    "right_text": "The ego vehicle is slightly steering to the left. The ego vehicle is driving fast.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000091",
+    "left_clip": "videos/front_cam_batch1/000090_n008-2018-09-18-12-53-31-0400__CAM_FRONT__1537290219412404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000090_n008-2018-09-18-12-53-31-0400__CAM_FRONT__1537290219412404_prev10.mp4",
+    "left_text": "<c2,CAM_FRONT,1010.8,585.8>, <c3,CAM_FRONT,1060.8,314.5>, <c1,CAM_FRONT,538.3,536.7>.",
+    "right_text": "<c2,CAM_FRONT,759.2,576.7>, <c3,CAM_FRONT,1214.2,562.5>, <c1,CAM_FRONT,762.5,485.0>.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000092",
+    "left_clip": "videos/front_cam_batch1/000091_n008-2018-09-18-12-53-31-0400__CAM_FRONT__1537290210012404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000091_n008-2018-09-18-12-53-31-0400__CAM_FRONT__1537290210012404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving with normal speed.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000093",
+    "left_clip": "videos/front_cam_batch1/000092_n008-2018-09-18-12-53-31-0400__CAM_FRONT__1537290203512404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000092_n008-2018-09-18-12-53-31-0400__CAM_FRONT__1537290203512404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "right_text": "The ego vehicle is going straight. Therefore, the ego vehicle is driving fast.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000094",
+    "left_clip": "videos/front_cam_batch1/000093_n008-2018-09-18-12-53-31-0400__CAM_FRONT__1537290213012404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000093_n008-2018-09-18-12-53-31-0400__CAM_FRONT__1537290213012404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000095",
+    "left_clip": "videos/front_cam_batch1/000094_n008-2018-09-18-12-53-31-0400__CAM_FRONT__1537290207012404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000094_n008-2018-09-18-12-53-31-0400__CAM_FRONT__1537290207012404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000096",
+    "left_clip": "videos/front_cam_batch1/000095_n008-2018-09-18-14-54-39-0400__CAM_FRONT__1537297549912404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000095_n008-2018-09-18-14-54-39-0400__CAM_FRONT__1537297549912404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000097",
+    "left_clip": "videos/front_cam_batch1/000096_n008-2018-09-18-14-54-39-0400__CAM_FRONT__1537297552512404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000096_n008-2018-09-18-14-54-39-0400__CAM_FRONT__1537297552512404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000098",
+    "left_clip": "videos/front_cam_batch1/000097_n008-2018-09-18-14-54-39-0400__CAM_FRONT__1537297540412404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000097_n008-2018-09-18-14-54-39-0400__CAM_FRONT__1537297540412404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. Therefore, the ego vehicle will decelerate gradually without braking.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000099",
+    "left_clip": "videos/front_cam_batch1/000098_n008-2018-09-18-14-54-39-0400__CAM_FRONT__1537297545912404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000098_n008-2018-09-18-14-54-39-0400__CAM_FRONT__1537297545912404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000100",
+    "left_clip": "videos/front_cam_batch1/000099_n008-2018-09-18-14-54-39-0400__CAM_FRONT__1537297542912404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000099_n008-2018-09-18-14-54-39-0400__CAM_FRONT__1537297542912404_prev10.mp4",
+    "left_text": "Turning right, changing to the right lane are dangerous actions for the ego vehicle in this scenario.",
+    "right_text": "Braking suddenly, backing up, turning left, turning right, and changing to the left lane are all dangerous actions for the ego vehicle in this scenario.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000101",
+    "left_clip": "videos/front_cam_batch1/000100_n008-2018-09-18-14-54-39-0400__CAM_FRONT__1537297551512404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000100_n008-2018-09-18-14-54-39-0400__CAM_FRONT__1537297551512404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000102",
+    "left_clip": "videos/front_cam_batch1/000101_n008-2018-09-18-14-54-39-0400__CAM_FRONT__1537297547912404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000101_n008-2018-09-18-14-54-39-0400__CAM_FRONT__1537297547912404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000103",
+    "left_clip": "videos/front_cam_batch1/000102_n008-2018-09-18-14-54-39-0400__CAM_FRONT__1537297534912404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000102_n008-2018-09-18-14-54-39-0400__CAM_FRONT__1537297534912404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "right_text": "The ego vehicle is going straight. Therefore, the ego vehicle is not turning right.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000115",
+    "left_clip": "videos/front_cam_batch1/000114_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573415862404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000114_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573415862404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000116",
+    "left_clip": "videos/front_cam_batch1/000115_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573410862404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000115_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573410862404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000117",
+    "left_clip": "videos/front_cam_batch1/000116_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573412362404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000116_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573412362404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000118",
+    "left_clip": "videos/front_cam_batch1/000117_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573423112404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000117_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573423112404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000119",
+    "left_clip": "videos/front_cam_batch1/000118_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573414412404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000118_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573414412404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000120",
+    "left_clip": "videos/front_cam_batch1/000119_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573408412404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000119_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573408412404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is going straight. Therefore, it will continue to go straight.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000121",
+    "left_clip": "videos/front_cam_batch1/000120_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573424512404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000120_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573424512404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000122",
+    "left_clip": "videos/front_cam_batch1/000121_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573419512404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000121_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573419512404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving fast.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000123",
+    "left_clip": "videos/front_cam_batch1/000122_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573299412404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000122_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573299412404_prev10.mp4",
+    "left_text": "The scene is very informative, the road conditions are complex, and it deserves extra attention.",
+    "right_text": "The scene is very informative, the road conditions are complex, and it deserves special attention.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000124",
+    "left_clip": "videos/front_cam_batch1/000123_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573289862404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000123_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573289862404_prev10.mp4",
+    "left_text": "The road conditions in this scene are complex.",
+    "right_text": "The scene is rich in information, with complex road conditions, and deserves special attention.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000125",
+    "left_clip": "videos/front_cam_batch1/000124_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573295412404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000124_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573295412404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000126",
+    "left_clip": "videos/front_cam_batch1/000125_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573292912404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000125_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573292912404_prev10.mp4",
+    "left_text": "Accelerate and go ahead, change to the right lane.",
+    "right_text": "Back up, turn left, turn right, accelerate, and go ahead.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000127",
+    "left_clip": "videos/front_cam_batch1/000126_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573307412404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000126_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573307412404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000128",
+    "left_clip": "videos/front_cam_batch1/000127_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573297912404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000127_n008-2018-08-29-16-04-13-0400__CAM_FRONT__1535573297912404_prev10.mp4",
+    "left_text": "The ego vehicle is going straight. The ego vehicle is not moving.",
+    "right_text": "The ego vehicle is going straight. The ego vehicle is driving slowly.",
+    "description": "clips"
+  },
+  {
+    "pair_id": "000129",
+    "left_clip": "videos/front_cam_batch1/000128_n008-2018-08-30-15-16-55-0400__CAM_FRONT__1535656880262404_prev10.mp4",
+    "right_clip": "videos/front_cam_batch1/000128_n008-2018-08-30-15-16-55-0400__CAM_FRONT__1535656880262404_prev10.mp4",
+    "left_text": "Turning left, backing up, accelerating, and going ahead are dangerous actions to take for the ego vehicle in this scenario.",
+    "right_text": "Backing up, turning right, and turning left are dangerous actions for the ego vehicle in this scenario.",
+    "description": "clips"
+  },
+  {
     "pair_id": "000130",
     "left_clip": "videos/front_cam_batch1/000129_n008-2018-08-30-15-16-55-0400__CAM_FRONT__1535656893262404_prev10.mp4",
     "right_clip": "videos/front_cam_batch1/000129_n008-2018-08-30-15-16-55-0400__CAM_FRONT__1535656893262404_prev10.mp4",
