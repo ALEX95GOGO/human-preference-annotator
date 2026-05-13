@@ -19,7 +19,7 @@ document.getElementById("refreshProgressBtn")?.addEventListener("click", fetchPr
 document.getElementById("refreshTokensBtn")?.addEventListener("click", fetchTokens);
 document.getElementById("addAnnotatorBtn")?.addEventListener("click", addAnnotator);
 document.getElementById("removeAnnotatorBtn")?.addEventListener("click", removeAnnotator);
-document.getElementById("flushBtn")?.addEventListener("click", flushDatabase);
+//document.getElementById("flushBtn")?.addEventListener("click", flushDatabase);
 document.getElementById("downloadBtn")?.addEventListener("click", downloadAnnotations);
 
 loginBtn?.addEventListener("click", login);
@@ -156,13 +156,13 @@ async function downloadAnnotations() {
     URL.revokeObjectURL(url);
 }
 
-async function flushDatabase() {
-    if (!confirm("This will DELETE ALL annotation and progress data. Continue?")) return;
-    const res = await fetch(`${API_BASE}/admin/flush?token=${encodeURIComponent(adminToken)}`, {
-        method: "POST",
-    });
-    alert(res.ok ? "Database flushed." : "Error.");
-}
+// async function flushDatabase() {
+//     if (!confirm("This will DELETE ALL annotation and progress data. Continue?")) return;
+//     const res = await fetch(`${API_BASE}/admin/flush?token=${encodeURIComponent(adminToken)}`, {
+//         method: "POST",
+//     });
+//     alert(res.ok ? "Database flushed." : "Error.");
+// }
 
 async function addAnnotator() {
     const annotatorId = document.getElementById("newAnnotatorId").value.trim();
